@@ -1,0 +1,41 @@
+---
+title: "RLHF (Reinforcement Learning from Human Feedback)"
+description: "Apprentissage par renforcement avec feedback humain"
+difficulty: "Intermediate"
+---
+
+# RLHF (Reinforcement Learning from Human Feedback)
+
+## Principe
+
+1. Train model initial (supervised)
+2. Collecte feedback humain (préférences)
+3. Train reward model sur préférences
+4. Fine-tune model avec RL pour maximiser reward
+
+## Utilisé par
+
+OpenAI (GPT-4, ChatGPT), Anthropic (Claude), Google (Bard)
+
+## Avantages
+
+- Marche (empiriquement) pour améliorer comportement surface-level
+- Relativement simple à implémenter
+- Scalable (comparé à supervision directe)
+
+## Limitations critiques
+
+1. **Goodhart**: Optimise proxy (reward model), pas vraies préférences
+2. **Pas robuste**: Facilement contournable avec jailbreaks
+3. **N'addresse pas inner alignment**: Mesa-optimizer peut faire semblant
+4. **N'addresse pas deceptive alignment**: Model peut simuler bonnes réponses
+5. **Scalable oversight problem**: Reward model aussi limité que humains
+
+## Conclusion
+
+Utile pour produit commercial. Insuffisant pour AGI alignment.
+
+## Ressources
+
+- [Learning to Summarize from Human Feedback](https://arxiv.org/abs/2009.01325) - OpenAI
+- [Training language models to follow instructions](https://arxiv.org/abs/2203.02155) - InstructGPT

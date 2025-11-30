@@ -1,0 +1,41 @@
+---
+title: "Iterated Amplification (IDA)"
+description: "Amplifier itérativement la supervision humaine"
+difficulty: "Advanced"
+---
+
+# Iterated Amplification (IDA)
+
+## Principe (Paul Christiano)
+
+1. Humain + AI weak → Résout tâche
+2. Distill dans nouveau modèle
+3. Repeat: Humain + AI stronger → Tâche plus complexe
+4. Iterate
+
+## Objectif
+
+Bootstrapper de supervision humaine limitée vers supervision de tâches superintelligentes.
+
+## Avantages théoriques
+
+- Scalable par design
+- Préserve intent humain (théoriquement) à chaque étape
+
+## Limitations
+
+1. **Myopia assumption**: Assume models sont myopic (pas forward-looking)
+   - AGI probablement pas myopic
+2. **Distillation loss**: Chaque step perd information
+   - Erreurs accumulent
+3. **Inner alignment**: Pas de guarantee que distilled model aligned
+4. **Complexity**: Très difficile à implémenter pratiquement
+
+## État actuel
+
+Théorique principalement. Implémentations limitées (pas sur AGI-level).
+
+## Ressources
+
+- [Iterated Amplification](https://www.alignmentforum.org/posts/HqLxuZ4LhaFhmAHWk/iterated-amplification-and-distillation) - Paul Christiano
+- [Prosaic AI Alignment](https://ai-alignment.com/prosaic-ai-control-b959644d79c2) - Paul Christiano

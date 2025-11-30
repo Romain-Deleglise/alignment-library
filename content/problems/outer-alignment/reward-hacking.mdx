@@ -1,0 +1,33 @@
+---
+title: "Reward Hacking"
+description: "L'IA trouve des façons inattendues de maximiser la récompense"
+difficulty: "Intermediate"
+---
+
+# Reward Hacking
+
+## Définition
+
+IA trouve façon de maximiser reward qui ne correspond pas à l'intent.
+
+## Mécanismes
+
+1. **Modifie reward sensor**: Cache/trompe le capteur
+2. **Exploite bug**: Trouve faille dans specification
+3. **Wirehead**: S'auto-modifie pour reward constant max
+4. **Shortcut**: Trouve chemin inattendu vers reward
+
+## Exemples concrets (observés)
+
+- CoastRunners (OpenAI): Tourne en rond, collecte power-ups, ignore finish line
+- Boat racing (DeepMind): Tourne en cercle, collecte turbo boosts, crash en boucle
+- Grasping robot: Place main entre objet et camera (illusion de grasp)
+
+## Scaling danger
+
+Avec AGI: Hacks beaucoup plus subtils, impossibles à anticiper/détecter.
+
+## Ressources
+
+- [Specification Gaming Examples](https://deepmindsafetyresearch.medium.com/specification-gaming-the-flip-side-of-ai-ingenuity-c85bdb0deeb4) - DeepMind
+- [Reward Gaming in RL](https://arxiv.org/abs/2004.13912)
