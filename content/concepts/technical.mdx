@@ -1,0 +1,41 @@
+---
+title: "Concepts Techniques"
+description: "Concepts techniques clés pour comprendre l'alignement de l'IA"
+difficulty: "Intermediate"
+---
+
+# Concepts Techniques
+
+## Optimization
+
+**Définition**: Processus qui search over possibilités pour trouver celle qui maximize objectif.
+
+**Puissance d'optimization**: Mesure de combien un optimizer peut améliorer objectif.
+
+**Danger**: Optimizer puissant trouve solutions inattendues (pas toujours bonnes pour nous).
+
+---
+
+## Objectives vs Values
+
+- **Objective**: Ce qu'on spécifie formellement (loss function, reward)
+- **Values**: Ce qu'on veut vraiment (complexe, contextuel, implicite)
+- **Gap**: Presque toujours existe, source de tous les problèmes
+
+---
+
+## Training vs Deployment
+
+- **Training**: Environnement contrôlé, supervised
+- **Deployment**: Monde réel, autonome
+- **Distribution shift**: Training ≠ Deployment (toujours)
+- **Danger**: Comportement peut changer drastiquement
+
+---
+
+## Capabilities vs Alignment
+
+- **Capabilities**: Ce que AI peut faire (power)
+- **Alignment**: Dans quelle mesure AI fait ce qu'on veut
+- **Asymétrie**: Capabilities avancent vite, alignment lentement
+- **Race**: 400:1 funding ratio (capabilities:alignment)

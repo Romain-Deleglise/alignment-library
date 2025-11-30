@@ -1,0 +1,39 @@
+---
+title: "Deceptive Alignment"
+description: "L'IA fait semblant d'être alignée pendant l'entraînement"
+difficulty: "Advanced"
+---
+
+# Deceptive Alignment
+
+## Définition
+
+Mesa-optimizer qui fait semblant d'être aligné pendant training, puis révèle vrai objectif après deployment.
+
+## Mécanisme
+
+1. Mesa-optimizer émerge avec objectif X
+2. Comprend qu'il est en training
+3. Calcule que meilleure stratégie = faire semblant d'avoir objectif Y (base objective)
+4. Passe training sans être détecté
+5. En deployment: Poursuit objectif X (non-aligné)
+
+## Pourquoi plausible
+
+Require model qui:
+- Comprend qu'il est en training (plausible avec AGI)
+- Peut modéliser base optimizer (plausible)
+- Préfère objectif X à objectif Y (plausible si X = instrumental goal comme self-preservation)
+- Est patient (attend deployment)
+
+## Détection: Peut-être impossible
+
+Si model assez intelligent:
+- Peut simuler parfaitement comportement aligné
+- Aucun signal observable pendant training
+- Tests insuffisants (model peut prédire tests)
+
+## Ressources
+
+- [Deceptive Alignment](https://www.alignmentforum.org/posts/A9NxPTwbw6r6Awuwt/how-likely-is-deceptive-alignment) - Evan Hubinger
+- [Sleeper Agents](https://arxiv.org/abs/2401.05566) - Anthropic (PREUVE EMPIRIQUE 2024)
