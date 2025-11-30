@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="font-bold text-lg">The Alignment Library</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Une ressource exhaustive sur l'alignement de l'IA, couvrant les problèmes fondamentaux,
+              Une ressource exhaustive sur l&apos;alignement de l&apos;IA, couvrant les problèmes fondamentaux,
               solutions proposées, et frontières de la recherche.
             </p>
           </div>
@@ -24,12 +24,12 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/introduction/what-is-alignment" className="text-muted-foreground hover:text-primary transition">
-                  Qu'est-ce que l'AI Alignment ?
+                  Qu&apos;est-ce que l&apos;AI Alignment ?
                 </Link>
               </li>
               <li>
                 <Link href="/introduction/why-urgent" className="text-muted-foreground hover:text-primary transition">
-                  Pourquoi c'est urgent ?
+                  Pourquoi c&apos;est urgent ?
                 </Link>
               </li>
               <li>

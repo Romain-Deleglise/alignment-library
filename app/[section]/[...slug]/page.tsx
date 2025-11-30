@@ -5,14 +5,37 @@ import components from '@/components/MDXComponents'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReadingProgress from '@/components/ReadingProgress'
 import TableOfContents from '@/components/TableOfContents'
+import RelatedArticles from '@/components/RelatedArticles'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
+import type { Metadata } from 'next'
 
 type Props = {
   params: {
     section: string
     slug: string[]
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slugPath = [params.section, ...params.slug]
+  const data = getContentBySlug(slugPath)
+
+  if (!data) {
+    return {
+      title: 'Page Not Found - The Alignment Library',
+    }
+  }
+
+  return {
+    title: `${data.metadata.title} - The Alignment Library`,
+    description: data.metadata.description || 'Learn about AI Alignment',
+    openGraph: {
+      title: data.metadata.title,
+      description: data.metadata.description,
+      type: 'article',
+    },
   }
 }
 
@@ -23,6 +46,8 @@ export default async function ContentPage({ params }: Props) {
   if (!data) {
     notFound()
   }
+
+  const currentPath = '/' + slugPath.join('/')
 
   return (
     <div className="max-w-7xl mx-auto flex gap-8">
@@ -57,6 +82,8 @@ export default async function ContentPage({ params }: Props) {
             }}
           />
         </div>
+
+        <RelatedArticles currentPath={currentPath} />
       </article>
 
       {/* Table of Contents - Desktop only */}
