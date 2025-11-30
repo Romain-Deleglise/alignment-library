@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'The Alignment Library',
@@ -23,9 +24,10 @@ export default function RootLayout({
 
             {/* Main Content */}
             <main className="flex-1 overflow-y-auto">
-              <div className="container mx-auto px-4 py-8 max-w-4xl">
+              <div className="container mx-auto px-4 py-8">
                 {children}
               </div>
+              <Footer />
             </main>
           </div>
         </ThemeProvider>

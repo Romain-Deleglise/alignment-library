@@ -26,9 +26,17 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
   }
+
+  /* Better typography */
+  body {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-/* Code highlighting (si rehype-highlight) */
+/* Code highlighting */
 @import 'highlight.js/styles/github-dark.css';
 
 /* Smooth scroll */
@@ -52,4 +60,91 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted));
+}
+
+/* Prose improvements for MDX content */
+.prose {
+  @apply text-foreground;
+}
+
+.prose h2 {
+  @apply scroll-mt-20;
+}
+
+.prose h3 {
+  @apply scroll-mt-20;
+}
+
+.prose h4 {
+  @apply scroll-mt-20;
+}
+
+.prose a {
+  @apply no-underline border-b border-primary/30 hover:border-primary transition-colors;
+}
+
+.prose code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono before:content-none after:content-none;
+}
+
+.prose pre {
+  @apply bg-muted border border-border;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose blockquote {
+  @apply border-l-primary/50 bg-primary/5 py-1;
+}
+
+.prose strong {
+  @apply text-foreground font-semibold;
+}
+
+.prose ul > li::marker {
+  @apply text-primary;
+}
+
+.prose ol > li::marker {
+  @apply text-primary;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.2s ease-in-out;
+}
+
+.slide-in-from-top-2 {
+  animation: slide-in-from-top 0.2s ease-in-out;
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-in-out;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
 }

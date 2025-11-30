@@ -4,14 +4,38 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import components from '@/components/MDXComponents'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ReadingProgress from '@/components/ReadingProgress'
+import TableOfContents from '@/components/TableOfContents'
+import RelatedArticles from '@/components/RelatedArticles'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
+import type { Metadata } from 'next'
 
 type Props = {
   params: {
     section: string
     slug: string[]
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slugPath = [params.section, ...params.slug]
+  const data = getContentBySlug(slugPath)
+
+  if (!data) {
+    return {
+      title: 'Page Not Found - The Alignment Library',
+    }
+  }
+
+  return {
+    title: `${data.metadata.title} - The Alignment Library`,
+    description: data.metadata.description || 'Learn about AI Alignment',
+    openGraph: {
+      title: data.metadata.title,
+      description: data.metadata.description,
+      type: 'article',
+    },
   }
 }
 
@@ -23,38 +47,54 @@ export default async function ContentPage({ params }: Props) {
     notFound()
   }
 
+  const currentPath = '/' + slugPath.join('/')
+
   return (
-    <article className="max-w-4xl mx-auto">
-      <ReadingProgress />
+    <div className="max-w-7xl mx-auto flex gap-8">
+      <article className="flex-1 max-w-4xl">
+        <ReadingProgress />
 
-      <Breadcrumbs path={slugPath} />
+        <Breadcrumbs path={slugPath} />
 
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">{data.metadata.title}</h1>
-        {data.metadata.description && (
-          <p className="text-xl text-muted-foreground">{data.metadata.description}</p>
-        )}
-        {data.metadata.difficulty && (
-          <div className="mt-4 inline-block">
-            <span className="px-3 py-1 bg-muted rounded-full text-sm">
-              {data.metadata.difficulty}
-            </span>
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">{data.metadata.title}</h1>
+          {data.metadata.description && (
+            <p className="text-xl text-muted-foreground">{data.metadata.description}</p>
+          )}
+          <div className="mt-4 flex gap-2 flex-wrap">
+            {data.metadata.difficulty && (
+              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                {data.metadata.difficulty}
+              </span>
+            )}
           </div>
-        )}
-      </header>
+        </header>
 
-      <div className="prose prose-lg dark:prose-invert max-w-none">
-        <MDXRemote
-          source={data.content}
-          components={components}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-              rehypePlugins: [rehypeHighlight, rehypeSlug],
-            },
-          }}
-        />
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          <MDXRemote
+            source={data.content}
+            components={components}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [rehypeHighlight, rehypeSlug],
+              },
+            }}
+          />
+        </div>
+
+        <RelatedArticles currentPath={currentPath} />
+      </article>
+
+      {/* Table of Contents - Desktop only */}
+      <div className="hidden xl:block w-64 flex-shrink-0">
+        <TableOfContents />
       </div>
-    </article>
+
+      {/* Table of Contents - Mobile as floating button */}
+      <div className="xl:hidden">
+        <TableOfContents />
+      </div>
+    </div>
   )
 }

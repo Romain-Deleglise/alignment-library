@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Book, Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
+import SearchBar from './SearchBar'
 
 // Structure du contenu
 const navStructure = [
@@ -105,12 +106,17 @@ export default function Navigation() {
     )
   }
 
+  const closeMenu = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
-      {/* Mobile Toggle */}
+      {/* Mobile Toggle - Improved positioning */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background border rounded-lg"
+        className="lg:hidden fixed top-4 left-4 z-[60] p-2.5 bg-background border-2 border-border rounded-lg shadow-lg hover:shadow-xl transition-all"
+        aria-label="Toggle menu"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -119,42 +125,55 @@ export default function Navigation() {
       <aside
         className={`
           fixed lg:sticky top-0 left-0 h-screen w-80 bg-background border-r
-          overflow-y-auto z-40 transition-transform duration-300
+          overflow-y-auto z-50 lg:z-auto transition-transform duration-300 shadow-2xl lg:shadow-none
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
         {/* Header */}
         <div className="p-6 border-b">
-          <Link href="/" className="flex items-center gap-3 group">
-            <Book className="w-8 h-8 text-primary" />
+          <Link
+            href="/"
+            className="flex items-center gap-3 group"
+            onClick={closeMenu}
+          >
+            <Book className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
             <div>
-              <h1 className="text-xl font-bold">The Alignment Library</h1>
+              <h1 className="text-xl font-bold group-hover:text-primary transition-colors">
+                The Alignment Library
+              </h1>
               <p className="text-sm text-muted-foreground">AI Alignment Knowledge Base</p>
             </div>
           </Link>
-          <div className="mt-4">
+          <div className="mt-4 flex gap-2">
             <ThemeToggle />
           </div>
         </div>
 
+        {/* Search Bar */}
+        <div className="p-4 border-b">
+          <SearchBar />
+        </div>
+
         {/* Navigation */}
-        <nav className="p-4">
+        <nav className="p-4 pb-8">
           {navStructure.map((section) => (
             <div key={section.slug} className="mb-2">
               <button
                 onClick={() => toggleSection(section.slug)}
-                className="flex items-center justify-between w-full p-2 hover:bg-muted rounded-lg text-left"
+                className="flex items-center justify-between w-full p-2 hover:bg-muted rounded-lg text-left transition-colors group"
               >
-                <span className="font-semibold">{section.title}</span>
+                <span className="font-semibold group-hover:text-primary transition-colors">
+                  {section.title}
+                </span>
                 {expandedSections.includes(section.slug) ? (
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-4 h-4 transition-transform" />
                 ) : (
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4 transition-transform" />
                 )}
               </button>
 
               {expandedSections.includes(section.slug) && (
-                <div className="ml-4 mt-1 space-y-1">
+                <div className="ml-4 mt-1 space-y-1 animate-in slide-in-from-top-2 duration-200">
                   {section.items.map((item) => (
                     <div key={item.slug}>
                       {/* @ts-ignore */}
@@ -169,10 +188,11 @@ export default function Navigation() {
                               <Link
                                 key={subitem.slug}
                                 href={`/${section.slug}/${item.slug}/${subitem.slug}`}
-                                className={`block p-2 text-sm rounded hover:bg-muted ${
+                                onClick={closeMenu}
+                                className={`block p-2 text-sm rounded hover:bg-muted transition-all ${
                                   pathname === `/${section.slug}/${item.slug}/${subitem.slug}`
-                                    ? 'bg-muted font-medium'
-                                    : ''
+                                    ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary pl-3'
+                                    : 'hover:pl-3 hover:border-l-2 hover:border-muted-foreground/30'
                                 }`}
                               >
                                 {subitem.title}
@@ -183,10 +203,11 @@ export default function Navigation() {
                       ) : (
                         <Link
                           href={`/${section.slug}/${item.slug}`}
-                          className={`block p-2 text-sm rounded hover:bg-muted ${
+                          onClick={closeMenu}
+                          className={`block p-2 text-sm rounded hover:bg-muted transition-all ${
                             pathname === `/${section.slug}/${item.slug}`
-                              ? 'bg-muted font-medium'
-                              : ''
+                              ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary pl-3'
+                              : 'hover:pl-3 hover:border-l-2 hover:border-muted-foreground/30'
                           }`}
                         >
                           {item.title}
@@ -204,8 +225,8 @@ export default function Navigation() {
       {/* Overlay (mobile) */}
       {isOpen && (
         <div
-          onClick={() => setIsOpen(false)}
-          className="lg:hidden fixed inset-0 bg-black/50 z-30"
+          onClick={closeMenu}
+          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in duration-200"
         />
       )}
     </>
