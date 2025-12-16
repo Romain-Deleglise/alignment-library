@@ -1,14 +1,15 @@
-'use client'
-
 import Link from 'next/link';
-import { Book, Target, TrendingUp, AlertTriangle, Users, Lightbulb, ExternalLink } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { Book, Target, AlertTriangle, Users, Lightbulb, ExternalLink } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import LearningPathCard from '@/components/LearningPathCard';
-import { DIFFICULTY_LEVELS } from '@/lib/types';
 
-export default function HomePage() {
-  const t = useTranslations('homepage');
-  const locale = useLocale();
+type Props = {
+  params: { locale: string };
+};
+
+export default async function HomePage({ params: { locale } }: Props) {
+  const t = await getTranslations('homepage');
 
   const learningPaths = [
     {
