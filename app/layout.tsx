@@ -6,6 +6,22 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var locale = window.location.pathname.split('/')[1];
+                if (locale === 'fr' || locale === 'en') {
+                  document.documentElement.lang = locale;
+                } else {
+                  document.documentElement.lang = 'fr';
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   )
