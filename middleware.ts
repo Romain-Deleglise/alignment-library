@@ -8,11 +8,13 @@ export default createMiddleware({
   // Locale par défaut
   defaultLocale,
 
-  // Utiliser le préfixe de locale pour toutes les langues sauf la par défaut
+  // Toujours afficher le préfixe de locale dans l'URL
   localePrefix: 'always',
 });
 
 export const config = {
-  // Matcher qui ignore les chemins internes de Next.js et les fichiers statiques
-  matcher: ['/', '/(fr|en)/:path*', '/((?!_next|_vercel|.*\\..*).*)'],
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/', '/(fr|en)/:path*', '/((?!_next|_vercel|api|.*\\..*).*)'],
 };
