@@ -36,25 +36,21 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            <div className="flex min-h-screen">
-              {/* Sidebar Navigation */}
-              <Navigation />
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <div className="flex min-h-screen font-sans antialiased">
+          {/* Sidebar Navigation */}
+          <Navigation />
 
-              {/* Main Content */}
-              <main className="flex-1 overflow-y-auto">
-                <div className="container mx-auto px-4 py-8">
-                  {children}
-                </div>
-                <Footer />
-              </main>
+          {/* Main Content */}
+          <main className="flex-1 overflow-y-auto">
+            <div className="container mx-auto px-4 py-8">
+              {children}
             </div>
-          </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+            <Footer />
+          </main>
+        </div>
+      </ThemeProvider>
+    </NextIntlClientProvider>
   )
 }
