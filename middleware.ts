@@ -8,11 +8,11 @@ export default createMiddleware({
   // Locale par défaut
   defaultLocale,
 
-  // Rediriger automatiquement vers la locale par défaut si aucune n'est détectée
-  localeDetection: true,
+  // Utiliser le préfixe de locale pour toutes les langues sauf la par défaut
+  localePrefix: 'always',
 });
 
 export const config = {
   // Matcher qui ignore les chemins internes de Next.js et les fichiers statiques
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/', '/(fr|en)/:path*', '/((?!_next|_vercel|.*\\..*).*)'],
 };
