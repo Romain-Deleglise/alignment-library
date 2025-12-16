@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { List } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 type Heading = {
   id: string
@@ -13,6 +14,7 @@ export default function TableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string>('')
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('tableOfContents')
 
   useEffect(() => {
     // Extract headings from the article
@@ -48,7 +50,7 @@ export default function TableOfContents() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed bottom-4 right-4 z-50 p-3 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all"
-        aria-label="Table of contents"
+        aria-label={t('ariaLabel')}
       >
         <List className="w-6 h-6" />
       </button>
@@ -64,7 +66,7 @@ export default function TableOfContents() {
       >
         <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
           <List className="w-4 h-4" />
-          Sur cette page
+          {t('title')}
         </h3>
         <nav>
           <ul className="space-y-2 text-sm">

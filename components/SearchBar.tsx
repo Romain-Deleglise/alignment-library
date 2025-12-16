@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Search, X } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslations, useLocale } from 'next-intl'
 
 type SearchResult = {
   title: string
@@ -14,6 +15,8 @@ export default function SearchBar() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [isOpen, setIsOpen] = useState(false)
+  const t = useTranslations('searchBar')
+  const locale = useLocale()
 
   // Simple client-side search
   // Pour production: utiliser Algolia ou similaire
@@ -51,7 +54,7 @@ export default function SearchBar() {
             setIsOpen(true)
           }}
           onFocus={() => setIsOpen(true)}
-          placeholder="Search..."
+          placeholder={t('placeholder')}
           className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background"
         />
         {query && (
@@ -74,7 +77,7 @@ export default function SearchBar() {
           {results.map((result) => (
             <Link
               key={result.slug}
-              href={`/${result.slug}`}
+              href={`/${locale}/${result.slug}`}
               onClick={() => {
                 setIsOpen(false)
                 setQuery('')

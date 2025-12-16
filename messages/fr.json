@@ -1,0 +1,201 @@
+{
+  "navigation": {
+    "title": "The Alignment Library",
+    "subtitle": "AI Alignment Knowledge Base",
+    "toggleMenu": "Basculer le menu",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "items": {
+          "whatIsAlignment": "Qu'est-ce que l'AI Alignment ?",
+          "whyUrgent": "Pourquoi c'est urgent ?",
+          "currentState": "État actuel (2024)"
+        }
+      },
+      "problems": {
+        "title": "Problèmes Fondamentaux",
+        "outerAlignment": {
+          "title": "Outer Alignment",
+          "specification": "Specification Problem",
+          "goodhart": "Goodhart's Law",
+          "rewardHacking": "Reward Hacking"
+        },
+        "innerAlignment": {
+          "title": "Inner Alignment",
+          "mesaOptimization": "Mesa-Optimization",
+          "deceptive": "Deceptive Alignment",
+          "proxy": "Proxy Alignment"
+        },
+        "other": {
+          "title": "Autres Problèmes",
+          "corrigibility": "Corrigibility",
+          "scalableOversight": "Scalable Oversight",
+          "distributionalShift": "Distributional Shift",
+          "instrumentalConvergence": "Instrumental Convergence",
+          "treacherousTurn": "Treacherous Turn"
+        }
+      },
+      "solutions": {
+        "title": "Solutions Proposées",
+        "items": {
+          "rlhf": "RLHF",
+          "constitutionalAi": "Constitutional AI",
+          "debate": "Debate",
+          "iteratedAmplification": "Iterated Amplification",
+          "interpretability": "Mechanistic Interpretability",
+          "elk": "ELK"
+        }
+      },
+      "concepts": {
+        "title": "Concepts Clés",
+        "items": {
+          "technical": "Techniques",
+          "philosophical": "Philosophiques"
+        }
+      },
+      "organizations": {
+        "title": "Organisations & Chercheurs",
+        "items": {
+          "miri": "MIRI",
+          "anthropic": "Anthropic",
+          "openai": "OpenAI Safety",
+          "researchers": "Chercheurs Clés"
+        }
+      },
+      "resources": {
+        "title": "Ressources",
+        "items": {
+          "readingLists": "Reading Lists",
+          "papers": "Papers",
+          "videos": "Videos & Podcasts",
+          "communities": "Communautés"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Une ressource exhaustive sur l'alignement de l'IA, couvrant les problèmes fondamentaux, solutions proposées, et frontières de la recherche.",
+    "getStarted": "Commencer",
+    "sections": "Sections",
+    "resources": "Ressources",
+    "copyright": "© 2024 The Alignment Library. Contenu sous licence open source.",
+    "links": {
+      "whatIsAlignment": "Qu'est-ce que l'AI Alignment ?",
+      "whyUrgent": "Pourquoi c'est urgent ?",
+      "readingLists": "Reading Lists",
+      "communities": "Communautés",
+      "fundamentalProblems": "Problèmes Fondamentaux",
+      "proposedSolutions": "Solutions Proposées",
+      "keyConcepts": "Concepts Clés",
+      "organizations": "Organisations"
+    }
+  },
+  "homepage": {
+    "hero": {
+      "title": "The Alignment Library",
+      "subtitle": "Base de Connaissances Complète sur l'Alignement de l'IA",
+      "description": "Une ressource structurée et exhaustive couvrant tous les problèmes fondamentaux, solutions proposées, et frontières de recherche en alignement de l'intelligence artificielle.",
+      "startReading": "Commencer la Lecture",
+      "readingLists": "Reading Lists"
+    },
+    "stats": {
+      "technicalArticles": "Articles Techniques",
+      "proposedSolutions": "Solutions Proposées",
+      "criticalProblems": "Problèmes Critiques"
+    },
+    "quickLinks": {
+      "coreProblems": {
+        "title": "Problèmes Fondamentaux",
+        "description": "Explorer les défis fondamentaux : outer alignment, inner alignment, corrigibilité, et plus encore."
+      },
+      "solutionsResearch": {
+        "title": "Solutions & Recherche",
+        "description": "Approches actuelles : RLHF, Constitutional AI, Debate, Mechanistic Interpretability, et leurs limitations."
+      },
+      "organizationsResearchers": {
+        "title": "Organisations & Chercheurs",
+        "description": "Les acteurs clés : MIRI, Anthropic, OpenAI, et les chercheurs leaders du domaine."
+      },
+      "learningResources": {
+        "title": "Ressources d'Apprentissage",
+        "description": "Listes de lecture organisées, articles, vidéos et cours classés par niveau de difficulté."
+      }
+    },
+    "pdoomWarning": {
+      "title": "Note sur P(doom)",
+      "description": "Cette bibliothèque présente les défis d'alignement de manière honnête. De nombreux chercheurs de premier plan estiment des probabilités très élevées de risque existentiel (50-99%+). Le contenu reflète la compréhension technique actuelle sans faux optimisme."
+    }
+  },
+  "tableOfContents": {
+    "title": "Sur cette page",
+    "ariaLabel": "Table des matières"
+  },
+  "relatedArticles": {
+    "title": "Articles Connexes",
+    "articles": {
+      "mesaOptimization": {
+        "description": "Comprendre comment les optimiseurs internes émergent",
+        "category": "Inner Alignment"
+      },
+      "rlhf": {
+        "description": "Solution courante mais avec des limitations",
+        "category": "Solutions"
+      },
+      "specification": {
+        "description": "Le défi de spécifier ce que nous voulons",
+        "descriptionAlt": "Premier problème fondamental à comprendre",
+        "category": "Outer Alignment"
+      },
+      "corrigibility": {
+        "description": "Peut-on créer une IA qui accepte d'être modifiée ?",
+        "category": "Problèmes Critiques"
+      },
+      "deceptiveAlignment": {
+        "description": "Le problème que cette solution tente de résoudre",
+        "category": "Inner Alignment"
+      },
+      "scalableOversight": {
+        "description": "Comment superviser une IA plus intelligente ?",
+        "category": "Problèmes Critiques"
+      },
+      "instrumentalConvergence": {
+        "description": "Pourquoi presque tous les objectifs sont dangereux",
+        "category": "Problèmes Critiques"
+      },
+      "readingLists": {
+        "description": "Ressources organisées par niveau",
+        "descriptionAlt": "Lectures recommandées par ces organisations",
+        "category": "Ressources"
+      },
+      "mesaOptimizationConcepts": {
+        "description": "Application pratique des concepts",
+        "category": "Inner Alignment"
+      },
+      "rlhfConcepts": {
+        "description": "Solution concrète appliquant ces concepts",
+        "category": "Solutions"
+      },
+      "papers": {
+        "description": "Papers fondamentaux de ces chercheurs",
+        "category": "Ressources"
+      },
+      "whatIsAlignment": {
+        "description": "Commencer par les bases",
+        "category": "Introduction"
+      },
+      "researchers": {
+        "description": "Les experts à suivre",
+        "category": "Organisations"
+      }
+    }
+  },
+  "searchBar": {
+    "placeholder": "Rechercher...",
+    "ariaLabel": "Rechercher dans le site"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "readMore": "Lire la suite"
+  }
+}
