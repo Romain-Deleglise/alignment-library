@@ -1,15 +1,20 @@
 import Link from 'next/link';
 import { Book, Target, AlertTriangle, Users, Lightbulb, ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import LearningPathCard from '@/components/LearningPathCard';
 
 type Props = {
   params: { locale: string };
 };
 
-export default async function HomePage({ params: { locale } }: Props) {
-  const t = await getTranslations('homepage');
+export default async function HomePage({ params }: Props) {
+  const { locale } = params;
+
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: 'homepage' });
 
   const learningPaths = [
     {
@@ -132,7 +137,7 @@ export default async function HomePage({ params: { locale } }: Props) {
         <div className="space-y-4 animate-in fade-in duration-500 delay-400">
           {learningPaths.map((path, index) => (
             <div key={path.level} className="animate-in slide-in-from-left duration-500" style={{ animationDelay: `${index * 100}ms` }}>
-              <LearningPathCard {...path} />
+              <LearningPathCard {...path} locale={locale} />
             </div>
           ))}
         </div>

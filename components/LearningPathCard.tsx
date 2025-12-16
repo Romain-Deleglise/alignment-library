@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
 import { DIFFICULTY_LEVELS, type DifficultyLevel } from '@/lib/types';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 
@@ -14,6 +13,7 @@ type Props = {
   articleCount: number;
   estimatedHours: string;
   href: string;
+  locale: string;
 };
 
 export default function LearningPathCard({
@@ -25,8 +25,8 @@ export default function LearningPathCard({
   articleCount,
   estimatedHours,
   href,
+  locale,
 }: Props) {
-  const locale = useLocale();
   const levelInfo = DIFFICULTY_LEVELS[level];
 
   const borderColors = {
