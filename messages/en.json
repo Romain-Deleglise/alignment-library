@@ -1,0 +1,201 @@
+{
+  "navigation": {
+    "title": "The Alignment Library",
+    "subtitle": "AI Alignment Knowledge Base",
+    "toggleMenu": "Toggle menu",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "items": {
+          "whatIsAlignment": "What is AI Alignment?",
+          "whyUrgent": "Why is it urgent?",
+          "currentState": "Current State (2024)"
+        }
+      },
+      "problems": {
+        "title": "Fundamental Problems",
+        "outerAlignment": {
+          "title": "Outer Alignment",
+          "specification": "Specification Problem",
+          "goodhart": "Goodhart's Law",
+          "rewardHacking": "Reward Hacking"
+        },
+        "innerAlignment": {
+          "title": "Inner Alignment",
+          "mesaOptimization": "Mesa-Optimization",
+          "deceptive": "Deceptive Alignment",
+          "proxy": "Proxy Alignment"
+        },
+        "other": {
+          "title": "Other Problems",
+          "corrigibility": "Corrigibility",
+          "scalableOversight": "Scalable Oversight",
+          "distributionalShift": "Distributional Shift",
+          "instrumentalConvergence": "Instrumental Convergence",
+          "treacherousTurn": "Treacherous Turn"
+        }
+      },
+      "solutions": {
+        "title": "Proposed Solutions",
+        "items": {
+          "rlhf": "RLHF",
+          "constitutionalAi": "Constitutional AI",
+          "debate": "Debate",
+          "iteratedAmplification": "Iterated Amplification",
+          "interpretability": "Mechanistic Interpretability",
+          "elk": "ELK"
+        }
+      },
+      "concepts": {
+        "title": "Key Concepts",
+        "items": {
+          "technical": "Technical",
+          "philosophical": "Philosophical"
+        }
+      },
+      "organizations": {
+        "title": "Organizations & Researchers",
+        "items": {
+          "miri": "MIRI",
+          "anthropic": "Anthropic",
+          "openai": "OpenAI Safety",
+          "researchers": "Key Researchers"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "items": {
+          "readingLists": "Reading Lists",
+          "papers": "Papers",
+          "videos": "Videos & Podcasts",
+          "communities": "Communities"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "A comprehensive resource on AI alignment, covering fundamental problems, proposed solutions, and research frontiers.",
+    "getStarted": "Get Started",
+    "sections": "Sections",
+    "resources": "Resources",
+    "copyright": "© 2024 The Alignment Library. Content under open source license.",
+    "links": {
+      "whatIsAlignment": "What is AI Alignment?",
+      "whyUrgent": "Why is it urgent?",
+      "readingLists": "Reading Lists",
+      "communities": "Communities",
+      "fundamentalProblems": "Fundamental Problems",
+      "proposedSolutions": "Proposed Solutions",
+      "keyConcepts": "Key Concepts",
+      "organizations": "Organizations"
+    }
+  },
+  "homepage": {
+    "hero": {
+      "title": "The Alignment Library",
+      "subtitle": "Comprehensive Knowledge Base on AI Alignment",
+      "description": "A structured, comprehensive resource covering all fundamental problems, proposed solutions, and research frontiers in artificial intelligence alignment.",
+      "startReading": "Start Reading",
+      "readingLists": "Reading Lists"
+    },
+    "stats": {
+      "technicalArticles": "Technical Articles",
+      "proposedSolutions": "Proposed Solutions",
+      "criticalProblems": "Critical Problems"
+    },
+    "quickLinks": {
+      "coreProblems": {
+        "title": "Core Problems",
+        "description": "Explore fundamental challenges: outer alignment, inner alignment, corrigibility, and more."
+      },
+      "solutionsResearch": {
+        "title": "Solutions & Research",
+        "description": "Current approaches: RLHF, Constitutional AI, Debate, Mechanistic Interpretability, and their limitations."
+      },
+      "organizationsResearchers": {
+        "title": "Organizations & Researchers",
+        "description": "Key players: MIRI, Anthropic, OpenAI, and leading researchers in the field."
+      },
+      "learningResources": {
+        "title": "Learning Resources",
+        "description": "Curated reading lists, papers, videos, and courses organized by difficulty level."
+      }
+    },
+    "pdoomWarning": {
+      "title": "A Note on P(doom)",
+      "description": "This library presents alignment challenges honestly. Many leading researchers estimate very high probabilities of existential risk (50-99%+). The content reflects current technical understanding without false optimism."
+    }
+  },
+  "tableOfContents": {
+    "title": "On this page",
+    "ariaLabel": "Table of contents"
+  },
+  "relatedArticles": {
+    "title": "Related Articles",
+    "articles": {
+      "mesaOptimization": {
+        "description": "Understanding how internal optimizers emerge",
+        "category": "Inner Alignment"
+      },
+      "rlhf": {
+        "description": "Common solution but with limitations",
+        "category": "Solutions"
+      },
+      "specification": {
+        "description": "The challenge of specifying what we want",
+        "descriptionAlt": "First fundamental problem to understand",
+        "category": "Outer Alignment"
+      },
+      "corrigibility": {
+        "description": "Can we create an AI that accepts being modified?",
+        "category": "Critical Problems"
+      },
+      "deceptiveAlignment": {
+        "description": "The problem this solution attempts to solve",
+        "category": "Inner Alignment"
+      },
+      "scalableOversight": {
+        "description": "How to supervise a more intelligent AI?",
+        "category": "Critical Problems"
+      },
+      "instrumentalConvergence": {
+        "description": "Why almost all objectives are dangerous",
+        "category": "Critical Problems"
+      },
+      "readingLists": {
+        "description": "Resources organized by level",
+        "descriptionAlt": "Readings recommended by these organizations",
+        "category": "Resources"
+      },
+      "mesaOptimizationConcepts": {
+        "description": "Practical application of concepts",
+        "category": "Inner Alignment"
+      },
+      "rlhfConcepts": {
+        "description": "Concrete solution applying these concepts",
+        "category": "Solutions"
+      },
+      "papers": {
+        "description": "Foundational papers from these researchers",
+        "category": "Resources"
+      },
+      "whatIsAlignment": {
+        "description": "Start with the basics",
+        "category": "Introduction"
+      },
+      "researchers": {
+        "description": "Experts to follow",
+        "category": "Organizations"
+      }
+    }
+  },
+  "searchBar": {
+    "placeholder": "Search...",
+    "ariaLabel": "Search the site"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "readMore": "Read more"
+  }
+}

@@ -1,7 +1,13 @@
+'use client'
+
 import Link from 'next/link'
-import { Book, Github, Twitter, Mail } from 'lucide-react'
+import { Book, Github } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
 
 export default function Footer() {
+  const t = useTranslations('footer')
+  const locale = useLocale()
+
   return (
     <footer className="border-t mt-20">
       <div className="container mx-auto px-4 py-12">
@@ -13,33 +19,32 @@ export default function Footer() {
               <span className="font-bold text-lg">The Alignment Library</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Une ressource exhaustive sur l&apos;alignement de l&apos;IA, couvrant les problèmes fondamentaux,
-              solutions proposées, et frontières de la recherche.
+              {t('description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Commencer</h3>
+            <h3 className="font-semibold mb-4">{t('getStarted')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/introduction/what-is-alignment" className="text-muted-foreground hover:text-primary transition">
-                  Qu&apos;est-ce que l&apos;AI Alignment ?
+                <Link href={`/${locale}/introduction/what-is-alignment`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.whatIsAlignment')}
                 </Link>
               </li>
               <li>
-                <Link href="/introduction/why-urgent" className="text-muted-foreground hover:text-primary transition">
-                  Pourquoi c&apos;est urgent ?
+                <Link href={`/${locale}/introduction/why-urgent`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.whyUrgent')}
                 </Link>
               </li>
               <li>
-                <Link href="/resources/reading-lists" className="text-muted-foreground hover:text-primary transition">
-                  Reading Lists
+                <Link href={`/${locale}/resources/reading-lists`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.readingLists')}
                 </Link>
               </li>
               <li>
-                <Link href="/resources/communities" className="text-muted-foreground hover:text-primary transition">
-                  Communautés
+                <Link href={`/${locale}/resources/communities`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.communities')}
                 </Link>
               </li>
             </ul>
@@ -47,26 +52,26 @@ export default function Footer() {
 
           {/* Sections */}
           <div>
-            <h3 className="font-semibold mb-4">Sections</h3>
+            <h3 className="font-semibold mb-4">{t('sections')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/problems/outer-alignment/specification" className="text-muted-foreground hover:text-primary transition">
-                  Problèmes Fondamentaux
+                <Link href={`/${locale}/problems/outer-alignment/specification`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.fundamentalProblems')}
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/rlhf" className="text-muted-foreground hover:text-primary transition">
-                  Solutions Proposées
+                <Link href={`/${locale}/solutions/rlhf`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.proposedSolutions')}
                 </Link>
               </li>
               <li>
-                <Link href="/concepts/technical" className="text-muted-foreground hover:text-primary transition">
-                  Concepts Clés
+                <Link href={`/${locale}/concepts/technical`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.keyConcepts')}
                 </Link>
               </li>
               <li>
-                <Link href="/organizations/miri" className="text-muted-foreground hover:text-primary transition">
-                  Organisations
+                <Link href={`/${locale}/organizations/miri`} className="text-muted-foreground hover:text-primary transition">
+                  {t('links.organizations')}
                 </Link>
               </li>
             </ul>
@@ -74,7 +79,7 @@ export default function Footer() {
 
           {/* Contact & Resources */}
           <div>
-            <h3 className="font-semibold mb-4">Ressources</h3>
+            <h3 className="font-semibold mb-4">{t('resources')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -123,7 +128,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-muted-foreground">
-            © 2024 The Alignment Library. Contenu sous licence open source.
+            {t('copyright')}
           </div>
 
           <div className="flex gap-4">

@@ -4,93 +4,95 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Book, Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
 import ThemeToggle from './ThemeToggle'
 import SearchBar from './SearchBar'
+import LanguageSelector from './LanguageSelector'
 
-// Structure du contenu
-const navStructure = [
+// Structure du contenu avec slugs uniquement
+const navStructureBase = [
   {
-    title: 'Introduction',
+    key: 'introduction',
     slug: 'introduction',
     items: [
-      { title: "Qu'est-ce que l'AI Alignment ?", slug: 'what-is-alignment' },
-      { title: "Pourquoi c'est urgent ?", slug: 'why-urgent' },
-      { title: 'État actuel (2024)', slug: 'current-state' },
+      { key: 'whatIsAlignment', slug: 'what-is-alignment' },
+      { key: 'whyUrgent', slug: 'why-urgent' },
+      { key: 'currentState', slug: 'current-state' },
     ],
   },
   {
-    title: 'Problèmes Fondamentaux',
+    key: 'problems',
     slug: 'problems',
     items: [
       {
-        title: 'Outer Alignment',
+        key: 'outerAlignment',
         slug: 'outer-alignment',
         subitems: [
-          { title: 'Specification Problem', slug: 'specification' },
-          { title: "Goodhart's Law", slug: 'goodhart' },
-          { title: 'Reward Hacking', slug: 'reward-hacking' },
+          { key: 'specification', slug: 'specification' },
+          { key: 'goodhart', slug: 'goodhart' },
+          { key: 'rewardHacking', slug: 'reward-hacking' },
         ],
       },
       {
-        title: 'Inner Alignment',
+        key: 'innerAlignment',
         slug: 'inner-alignment',
         subitems: [
-          { title: 'Mesa-Optimization', slug: 'mesa-optimization' },
-          { title: 'Deceptive Alignment', slug: 'deceptive' },
-          { title: 'Proxy Alignment', slug: 'proxy' },
+          { key: 'mesaOptimization', slug: 'mesa-optimization' },
+          { key: 'deceptive', slug: 'deceptive' },
+          { key: 'proxy', slug: 'proxy' },
         ],
       },
       {
-        title: 'Autres Problèmes',
+        key: 'other',
         slug: 'other',
         subitems: [
-          { title: 'Corrigibility', slug: 'corrigibility' },
-          { title: 'Scalable Oversight', slug: 'scalable-oversight' },
-          { title: 'Distributional Shift', slug: 'distributional-shift' },
-          { title: 'Instrumental Convergence', slug: 'instrumental-convergence' },
-          { title: 'Treacherous Turn', slug: 'treacherous-turn' },
+          { key: 'corrigibility', slug: 'corrigibility' },
+          { key: 'scalableOversight', slug: 'scalable-oversight' },
+          { key: 'distributionalShift', slug: 'distributional-shift' },
+          { key: 'instrumentalConvergence', slug: 'instrumental-convergence' },
+          { key: 'treacherousTurn', slug: 'treacherous-turn' },
         ],
       },
     ],
   },
   {
-    title: 'Solutions Proposées',
+    key: 'solutions',
     slug: 'solutions',
     items: [
-      { title: 'RLHF', slug: 'rlhf' },
-      { title: 'Constitutional AI', slug: 'constitutional-ai' },
-      { title: 'Debate', slug: 'debate' },
-      { title: 'Iterated Amplification', slug: 'iterated-amplification' },
-      { title: 'Mechanistic Interpretability', slug: 'interpretability' },
-      { title: 'ELK', slug: 'elk' },
+      { key: 'rlhf', slug: 'rlhf' },
+      { key: 'constitutionalAi', slug: 'constitutional-ai' },
+      { key: 'debate', slug: 'debate' },
+      { key: 'iteratedAmplification', slug: 'iterated-amplification' },
+      { key: 'interpretability', slug: 'interpretability' },
+      { key: 'elk', slug: 'elk' },
     ],
   },
   {
-    title: 'Concepts Clés',
+    key: 'concepts',
     slug: 'concepts',
     items: [
-      { title: 'Techniques', slug: 'technical' },
-      { title: 'Philosophiques', slug: 'philosophical' },
+      { key: 'technical', slug: 'technical' },
+      { key: 'philosophical', slug: 'philosophical' },
     ],
   },
   {
-    title: 'Organisations & Chercheurs',
+    key: 'organizations',
     slug: 'organizations',
     items: [
-      { title: 'MIRI', slug: 'miri' },
-      { title: 'Anthropic', slug: 'anthropic' },
-      { title: 'OpenAI Safety', slug: 'openai' },
-      { title: 'Chercheurs Clés', slug: 'researchers' },
+      { key: 'miri', slug: 'miri' },
+      { key: 'anthropic', slug: 'anthropic' },
+      { key: 'openai', slug: 'openai' },
+      { key: 'researchers', slug: 'researchers' },
     ],
   },
   {
-    title: 'Ressources',
+    key: 'resources',
     slug: 'resources',
     items: [
-      { title: 'Reading Lists', slug: 'reading-lists' },
-      { title: 'Papers', slug: 'papers' },
-      { title: 'Videos & Podcasts', slug: 'videos' },
-      { title: 'Communautés', slug: 'communities' },
+      { key: 'readingLists', slug: 'reading-lists' },
+      { key: 'papers', slug: 'papers' },
+      { key: 'videos', slug: 'videos' },
+      { key: 'communities', slug: 'communities' },
     ],
   },
 ]
@@ -99,6 +101,8 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState<string[]>(['introduction'])
   const pathname = usePathname()
+  const t = useTranslations('navigation')
+  const locale = useLocale()
 
   const toggleSection = (slug: string) => {
     setExpandedSections(prev =>
@@ -116,7 +120,7 @@ export default function Navigation() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="lg:hidden fixed top-4 left-4 z-[60] p-2.5 bg-background border-2 border-border rounded-lg shadow-lg hover:shadow-xl transition-all"
-        aria-label="Toggle menu"
+        aria-label={t('toggleMenu')}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -132,20 +136,21 @@ export default function Navigation() {
         {/* Header */}
         <div className="p-6 border-b">
           <Link
-            href="/"
+            href={`/${locale}`}
             className="flex items-center gap-3 group"
             onClick={closeMenu}
           >
             <Book className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
             <div>
               <h1 className="text-xl font-bold group-hover:text-primary transition-colors">
-                The Alignment Library
+                {t('title')}
               </h1>
-              <p className="text-sm text-muted-foreground">AI Alignment Knowledge Base</p>
+              <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
             </div>
           </Link>
           <div className="mt-4 flex gap-2">
             <ThemeToggle />
+            <LanguageSelector />
           </div>
         </div>
 
@@ -156,14 +161,14 @@ export default function Navigation() {
 
         {/* Navigation */}
         <nav className="p-4 pb-8">
-          {navStructure.map((section) => (
+          {navStructureBase.map((section) => (
             <div key={section.slug} className="mb-2">
               <button
                 onClick={() => toggleSection(section.slug)}
                 className="flex items-center justify-between w-full p-2 hover:bg-muted rounded-lg text-left transition-colors group"
               >
                 <span className="font-semibold group-hover:text-primary transition-colors">
-                  {section.title}
+                  {t(`sections.${section.key}.title`)}
                 </span>
                 {expandedSections.includes(section.slug) ? (
                   <ChevronDown className="w-4 h-4 transition-transform" />
@@ -174,43 +179,41 @@ export default function Navigation() {
 
               {expandedSections.includes(section.slug) && (
                 <div className="ml-4 mt-1 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                  {section.items.map((item) => (
+                  {section.items.map((item: any) => (
                     <div key={item.slug}>
-                      {/* @ts-ignore */}
                       {item.subitems ? (
                         <div>
                           <div className="p-2 text-sm font-medium text-muted-foreground">
-                            {item.title}
+                            {t(`sections.${section.key}.${item.key}.title`)}
                           </div>
                           <div className="ml-4 space-y-1">
-                            {/* @ts-ignore */}
-                            {item.subitems.map((subitem) => (
+                            {item.subitems.map((subitem: any) => (
                               <Link
                                 key={subitem.slug}
-                                href={`/${section.slug}/${item.slug}/${subitem.slug}`}
+                                href={`/${locale}/${section.slug}/${item.slug}/${subitem.slug}`}
                                 onClick={closeMenu}
                                 className={`block p-2 text-sm rounded hover:bg-muted transition-all ${
-                                  pathname === `/${section.slug}/${item.slug}/${subitem.slug}`
+                                  pathname === `/${locale}/${section.slug}/${item.slug}/${subitem.slug}`
                                     ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary pl-3'
                                     : 'hover:pl-3 hover:border-l-2 hover:border-muted-foreground/30'
                                 }`}
                               >
-                                {subitem.title}
+                                {t(`sections.${section.key}.${item.key}.${subitem.key}`)}
                               </Link>
                             ))}
                           </div>
                         </div>
                       ) : (
                         <Link
-                          href={`/${section.slug}/${item.slug}`}
+                          href={`/${locale}/${section.slug}/${item.slug}`}
                           onClick={closeMenu}
                           className={`block p-2 text-sm rounded hover:bg-muted transition-all ${
-                            pathname === `/${section.slug}/${item.slug}`
+                            pathname === `/${locale}/${section.slug}/${item.slug}`
                               ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary pl-3'
                               : 'hover:pl-3 hover:border-l-2 hover:border-muted-foreground/30'
                           }`}
                         >
-                          {item.title}
+                          {t(`sections.${section.key}.items.${item.key}`)}
                         </Link>
                       )}
                     </div>

@@ -1,11 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
 
 type RelatedArticle = {
   title: string
   href: string
-  description: string
-  category: string
+  descriptionKey: string
+  categoryKey: string
 }
 
 type Props = {
@@ -13,6 +16,8 @@ type Props = {
 }
 
 export default function RelatedArticles({ currentPath }: Props) {
+  const t = useTranslations('relatedArticles')
+  const locale = useLocale()
   // Simple logic to suggest related articles based on current path
   const getRelatedArticles = (path: string): RelatedArticle[] => {
     const related: RelatedArticle[] = []
@@ -22,15 +27,15 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Mesa-Optimization',
-          href: '/problems/inner-alignment/mesa-optimization',
-          description: 'Comprendre comment les optimiseurs internes émergent',
-          category: 'Inner Alignment',
+          href: `/${locale}/problems/inner-alignment/mesa-optimization`,
+          descriptionKey: 'articles.mesaOptimization.description',
+          categoryKey: 'articles.mesaOptimization.category',
         },
         {
           title: 'RLHF',
-          href: '/solutions/rlhf',
-          description: 'Solution courante mais avec des limitations',
-          category: 'Solutions',
+          href: `/${locale}/solutions/rlhf`,
+          descriptionKey: 'articles.rlhf.description',
+          categoryKey: 'articles.rlhf.category',
         }
       )
     }
@@ -40,15 +45,15 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Specification Problem',
-          href: '/problems/outer-alignment/specification',
-          description: 'Le défi de spécifier ce que nous voulons',
-          category: 'Outer Alignment',
+          href: `/${locale}/problems/outer-alignment/specification`,
+          descriptionKey: 'articles.specification.description',
+          categoryKey: 'articles.specification.category',
         },
         {
           title: 'Corrigibility',
-          href: '/problems/other/corrigibility',
-          description: 'Peut-on créer une IA qui accepte d\'être modifiée ?',
-          category: 'Problèmes Critiques',
+          href: `/${locale}/problems/other/corrigibility`,
+          descriptionKey: 'articles.corrigibility.description',
+          categoryKey: 'articles.corrigibility.category',
         }
       )
     }
@@ -58,15 +63,15 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Deceptive Alignment',
-          href: '/problems/inner-alignment/deceptive',
-          description: 'Le problème que cette solution tente de résoudre',
-          category: 'Inner Alignment',
+          href: `/${locale}/problems/inner-alignment/deceptive`,
+          descriptionKey: 'articles.deceptiveAlignment.description',
+          categoryKey: 'articles.deceptiveAlignment.category',
         },
         {
           title: 'Scalable Oversight',
-          href: '/problems/other/scalable-oversight',
-          description: 'Comment superviser une IA plus intelligente ?',
-          category: 'Problèmes Critiques',
+          href: `/${locale}/problems/other/scalable-oversight`,
+          descriptionKey: 'articles.scalableOversight.description',
+          categoryKey: 'articles.scalableOversight.category',
         }
       )
     }
@@ -76,21 +81,21 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Specification Problem',
-          href: '/problems/outer-alignment/specification',
-          description: 'Premier problème fondamental à comprendre',
-          category: 'Outer Alignment',
+          href: `/${locale}/problems/outer-alignment/specification`,
+          descriptionKey: 'articles.specification.descriptionAlt',
+          categoryKey: 'articles.specification.category',
         },
         {
           title: 'Instrumental Convergence',
-          href: '/problems/other/instrumental-convergence',
-          description: 'Pourquoi presque tous les objectifs sont dangereux',
-          category: 'Problèmes Critiques',
+          href: `/${locale}/problems/other/instrumental-convergence`,
+          descriptionKey: 'articles.instrumentalConvergence.description',
+          categoryKey: 'articles.instrumentalConvergence.category',
         },
         {
           title: 'Reading Lists',
-          href: '/resources/reading-lists',
-          description: 'Ressources organisées par niveau',
-          category: 'Ressources',
+          href: `/${locale}/resources/reading-lists`,
+          descriptionKey: 'articles.readingLists.description',
+          categoryKey: 'articles.readingLists.category',
         }
       )
     }
@@ -100,15 +105,15 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Mesa-Optimization',
-          href: '/problems/inner-alignment/mesa-optimization',
-          description: 'Application pratique des concepts',
-          category: 'Inner Alignment',
+          href: `/${locale}/problems/inner-alignment/mesa-optimization`,
+          descriptionKey: 'articles.mesaOptimizationConcepts.description',
+          categoryKey: 'articles.mesaOptimizationConcepts.category',
         },
         {
           title: 'RLHF',
-          href: '/solutions/rlhf',
-          description: 'Solution concrète appliquant ces concepts',
-          category: 'Solutions',
+          href: `/${locale}/solutions/rlhf`,
+          descriptionKey: 'articles.rlhfConcepts.description',
+          categoryKey: 'articles.rlhfConcepts.category',
         }
       )
     }
@@ -118,15 +123,15 @@ export default function RelatedArticles({ currentPath }: Props) {
       related.push(
         {
           title: 'Reading Lists',
-          href: '/resources/reading-lists',
-          description: 'Lectures recommandées par ces organisations',
-          category: 'Ressources',
+          href: `/${locale}/resources/reading-lists`,
+          descriptionKey: 'articles.readingLists.descriptionAlt',
+          categoryKey: 'articles.readingLists.category',
         },
         {
           title: 'Papers',
-          href: '/resources/papers',
-          description: 'Papers fondamentaux de ces chercheurs',
-          category: 'Ressources',
+          href: `/${locale}/resources/papers`,
+          descriptionKey: 'articles.papers.description',
+          categoryKey: 'articles.papers.category',
         }
       )
     }
@@ -135,16 +140,16 @@ export default function RelatedArticles({ currentPath }: Props) {
     if (path.includes('resources')) {
       related.push(
         {
-          title: "Qu'est-ce que l'AI Alignment ?",
-          href: '/introduction/what-is-alignment',
-          description: 'Commencer par les bases',
-          category: 'Introduction',
+          title: "What is AI Alignment?",
+          href: `/${locale}/introduction/what-is-alignment`,
+          descriptionKey: 'articles.whatIsAlignment.description',
+          categoryKey: 'articles.whatIsAlignment.category',
         },
         {
-          title: 'Chercheurs Clés',
-          href: '/organizations/researchers',
-          description: 'Les experts à suivre',
-          category: 'Organisations',
+          title: 'Key Researchers',
+          href: `/${locale}/organizations/researchers`,
+          descriptionKey: 'articles.researchers.description',
+          categoryKey: 'articles.researchers.category',
         }
       )
     }
@@ -158,7 +163,7 @@ export default function RelatedArticles({ currentPath }: Props) {
 
   return (
     <section className="mt-16 pt-8 border-t">
-      <h2 className="text-2xl font-bold mb-6">Articles Connexes</h2>
+      <h2 className="text-2xl font-bold mb-6">{t('title')}</h2>
       <div className="grid gap-4">
         {related.map((article) => (
           <Link
@@ -168,11 +173,11 @@ export default function RelatedArticles({ currentPath }: Props) {
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
-                <div className="text-sm text-muted-foreground mb-1">{article.category}</div>
+                <div className="text-sm text-muted-foreground mb-1">{t(article.categoryKey)}</div>
                 <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                   {article.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">{article.description}</p>
+                <p className="text-sm text-muted-foreground">{t(article.descriptionKey)}</p>
               </div>
               <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" />
             </div>
