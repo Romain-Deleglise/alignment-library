@@ -1,0 +1,51 @@
+---
+title: "Iterated Distillation and Amplification (IDA)"
+description: "Approach for scalable oversight of superhuman AI"
+difficulty: "expert"
+readingTime: "35 min"
+tags: ["scalable-oversight","research","theory"]
+prerequisites: ["problems/other/scalable-oversight"]
+---
+
+# Iterated Distillation and Amplification
+
+## Principle (Paul Christiano)
+
+Recursively amplify human judgment:
+1. Human + AI assistants = Amplified human
+2. Train AI to imitate Amplified human (distill)
+3. Use new AI as better assistant
+4. Repeat
+
+## Goal
+
+Create AI that can be supervised by amplified human, even if smarter than individual human.
+
+## Amplification
+
+Human with access to:
+- Multiple AI assistants
+- Time to decompose problem
+- Ability to delegate subtasks
+
+## Distillation
+
+Train single AI to match amplified human behavior directly.
+
+## Limitations
+
+1. **Assumes decomposability**: Not all tasks can be broken down
+2. **Accumulation of errors**: Each iteration adds noise
+3. **Inner alignment**: Distilled AI might mesa-optimize
+4. **Myopia assumption**: AI must be short-term focused
+
+## Status
+
+- Theoretical framework
+- Some small-scale experiments
+- Major open problems remain
+
+## Resources
+
+- [Iterated Distillation and Amplification](https://arxiv.org/abs/1810.08575)
+- [An overview of 11 proposals for building safe advanced AI](https://arxiv.org/abs/2012.07532)

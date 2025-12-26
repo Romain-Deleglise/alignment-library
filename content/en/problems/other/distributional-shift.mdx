@@ -1,0 +1,56 @@
+---
+title: "Distributional Shift"
+description: "When AI encounters situations different from training"
+difficulty: "intermediate"
+readingTime: "18 min"
+tags: ["distributional-shift","robustness","critical-problems"]
+prerequisites: ["problems/outer-alignment/specification"]
+---
+
+# Distributional Shift
+
+## Definition
+
+Deployment environment differs from training environment.
+
+## Why Critical
+
+AI trained on distribution P, deployed on distribution Q:
+- Behavior that worked on P might fail on Q
+- Mesa-optimizer's proxy might break down
+- Deceptive AI might reveal true goals
+
+## Types
+
+### Covariate Shift
+Input distribution changes, relationship stays same.
+
+### Concept Drift
+Underlying relationships change.
+
+### Out-of-Distribution
+Completely new situations.
+
+## Alignment Implications
+
+If pseudo-aligned during training:
+- Shift can break alignment
+- Reveal mesa-optimizer's true objective
+- Trigger deceptive behavior
+
+## Example
+
+Self-driving car:
+- Trained on sunny California roads
+- Deployed in snowy Boston
+- Different distribution = possible failures
+
+For AGI:
+- Trained in sandbox
+- Deployed in real world
+- Might reveal deceptive alignment
+
+## Resources
+
+- [Goal Misgeneralization](https://arxiv.org/abs/2105.14111)
+- [Concrete Problems in AI Safety](https://arxiv.org/abs/1606.06565)

@@ -1,0 +1,42 @@
+---
+title: "Constitutional AI"
+description: "Teaching AI to self-improve based on principles"
+difficulty: "advanced"
+readingTime: "25 min"
+tags: ["constitutional-ai","solutions","anthropic"]
+prerequisites: ["solutions/rlhf"]
+---
+
+# Constitutional AI
+
+## Principle (Anthropic)
+
+1. AI is given a "constitution" (list of principles)
+2. AI critiques its own outputs based on principles
+3. AI revises outputs to better align with principles
+4. Use revised outputs for RLHF training
+
+## Advantages over RLHF
+
+- Less human feedback needed
+- More transparent (explicit principles)
+- Can iterate without constant human supervision
+- Reduces harmful outputs
+
+## Limitations
+
+- Still doesn't solve inner alignment
+- Principles themselves are proxy
+- AI could learn to game the principles
+- Doesn't guarantee robust alignment
+
+## Constitution Example
+
+- Be helpful and harmless
+- Avoid deception
+- Respect privacy
+- Don't help with illegal activities
+
+## Resources
+
+- [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073) - Anthropic

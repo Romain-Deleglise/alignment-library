@@ -17,9 +17,10 @@ export type ContentData = {
   content: string
 }
 
-export function getContentBySlug(slugPath: string[]): ContentData | null {
+export function getContentBySlug(slugPath: string[], locale: string = 'en'): ContentData | null {
   try {
-    const fullPath = path.join(contentDirectory, ...slugPath) + '.mdx'
+    // Load from locale-specific directory: content/[locale]/...
+    const fullPath = path.join(contentDirectory, locale, ...slugPath) + '.mdx'
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
@@ -35,7 +36,7 @@ export function getContentBySlug(slugPath: string[]): ContentData | null {
   }
 }
 
-export function getAllContent(): ContentMetadata[] {
+export function getAllContent(locale: string = 'en'): ContentMetadata[] {
   // Recursively get all .mdx files
   function getAllMdxFiles(dir: string, baseDir: string = ''): string[] {
     const files = fs.readdirSync(dir)
@@ -57,10 +58,12 @@ export function getAllContent(): ContentMetadata[] {
     return mdxFiles
   }
 
-  const mdxFiles = getAllMdxFiles(contentDirectory)
+  // Load from locale-specific directory
+  const localeContentDir = path.join(contentDirectory, locale)
+  const mdxFiles = getAllMdxFiles(localeContentDir)
 
   return mdxFiles.map(file => {
-    const fullPath = path.join(contentDirectory, file)
+    const fullPath = path.join(localeContentDir, file)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data } = matter(fileContents)
     const slug = file.replace(/\.mdx$/, '')

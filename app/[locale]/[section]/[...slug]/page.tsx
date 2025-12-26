@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getContentBySlug } from '@/lib/content'
+import { getContentBySlug, getAllContent } from '@/lib/content'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import components from '@/components/MDXComponents'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -10,17 +10,41 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
 import type { Metadata } from 'next'
+import { setRequestLocale } from 'next-intl/server'
+
+const locales = ['en', 'fr'] as const
 
 type Props = {
   params: {
+    locale: string
     section: string
     slug: string[]
   }
 }
 
+export async function generateStaticParams() {
+  const params: { locale: string; section: string; slug: string[] }[] = []
+
+  // Generate params for both locales
+  for (const locale of locales) {
+    const allContent = getAllContent(locale)
+
+    for (const content of allContent) {
+      const parts = content.slug.split('/')
+      if (parts.length >= 2) {
+        const [section, ...slug] = parts
+        params.push({ locale, section, slug })
+      }
+    }
+  }
+
+  return params
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slugPath = [params.section, ...params.slug]
-  const data = getContentBySlug(slugPath)
+  const { locale, section, slug } = params
+  const slugPath = [section, ...slug]
+  const data = getContentBySlug(slugPath, locale)
 
   if (!data) {
     return {
@@ -40,8 +64,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ContentPage({ params }: Props) {
-  const slugPath = [params.section, ...params.slug]
-  const data = getContentBySlug(slugPath)
+  const { locale, section, slug } = params
+
+  // Enable static rendering
+  setRequestLocale(locale)
+
+  const slugPath = [section, ...slug]
+  const data = getContentBySlug(slugPath, locale)
 
   if (!data) {
     notFound()
