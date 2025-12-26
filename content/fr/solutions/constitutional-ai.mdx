@@ -1,0 +1,36 @@
+---
+title: "Constitutional AI"
+description: "L'IA s'aligne sur une constitution de principes définis"
+difficulty: "Intermediate"
+---
+
+# Constitutional AI
+
+## Principe (Anthropic)
+
+1. Define "constitution" (set de principes)
+2. Model critique ses propres outputs selon constitution
+3. Revise outputs pour être plus aligned
+4. Train sur revised outputs
+
+## Avantages sur RLHF
+
+- Moins dépendant de feedback humain continu
+- Principes explicites (transparents)
+- Peut incorporer valeurs complexes
+
+## Limitations
+
+1. **Spécification problem reste**: Comment écrire bonne constitution ?
+2. **Goodhart**: Optimise conformité aux principes écrits, pas intent
+3. **Inner alignment non résolu**: Mesa-optimizer peut faire semblant
+4. **Interprétation**: Model peut interpréter principes différemment que voulu
+
+## Conclusion
+
+Amélioration sur RLHF basique. Toujours insuffisant pour AGI.
+
+## Ressources
+
+- [Constitutional AI](https://arxiv.org/abs/2212.08073) - Anthropic
+- [Claude's Constitution](https://www.anthropic.com/index/claudes-constitution) - Anthropic

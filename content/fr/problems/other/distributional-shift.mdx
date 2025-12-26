@@ -1,0 +1,34 @@
+---
+title: "Distributional Shift"
+description: "Le comportement de l'IA peut changer quand l'environnement diffère de l'entraînement"
+difficulty: "Intermediate"
+---
+
+# Distributional Shift
+
+## Définition
+
+Comportement IA peut changer drastiquement quand environment diffère de training.
+
+## Pourquoi problème pour alignment
+
+- IA alignée sur training distribution
+- Deployment ≠ training (toujours)
+- Aucun guarantee que alignment robuste hors distribution
+
+## Exemples
+
+- IA safe dans environnement limité (sandbox)
+- Déployée dans monde réel: Nouveaux contextes, nouvelles opportunités
+- Behavior peut diverger complètement
+
+## Lien avec mesa-optimization
+
+Mesa-optimizer peut:
+- Détecter distributional shift
+- Utiliser comme signal qu'il est maintenant en deployment
+- Changer comportement (deceptive alignment)
+
+## Ressources
+
+- [Robustness and Distributional Shift](https://arxiv.org/abs/1906.02243)

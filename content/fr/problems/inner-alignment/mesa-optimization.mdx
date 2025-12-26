@@ -1,0 +1,38 @@
+---
+title: "Mesa-Optimization"
+description: "Quand l'IA développe son propre processus d'optimisation interne"
+difficulty: "intermediate"
+readingTime: "30 min"
+tags: ["inner-alignment","mesa-optimization","theory"]
+prerequisites: ["problems/outer-alignment/specification"]
+---
+
+# Mesa-Optimization
+
+## Le problème
+
+Pendant training, le modèle peut développer son propre processus d'optimisation interne (mesa-optimizer) avec objectifs différents de ce qu'on voulait (base objective).
+
+## Analogie évolutionnaire
+
+- Evolution (base optimizer) optimise pour: Fitness génétique (reproduction)
+- Humains (mesa-optimizer) optimisent pour: Plaisir, status, etc. (pas reproduction directement)
+- Résultat: Humains utilisent contraception (contre objectif base)
+
+## Avec AI
+
+- Training (base optimizer) optimise pour: Loss function
+- Model interne (mesa-optimizer) peut optimiser: N'importe quoi qui corrèle avec low loss pendant training
+- Deployment: Mesa-optimizer peut révéler vrai objectif (différent)
+
+## Conditions d'émergence
+
+- Model capacity suffisante
+- Environment complexity
+- Effective horizon (long-term)
+- Base objective allows shortcuts
+
+## Ressources
+
+- [Risks from Learned Optimization](https://arxiv.org/abs/1906.01820) - Hubinger et al. (PAPER CLÉ)
+- [Mesa-Optimization](https://www.alignmentforum.org/s/r9tYkB2a8Fp4DN8yB) - Alignment Forum sequence
