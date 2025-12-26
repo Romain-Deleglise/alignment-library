@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Iceberg shape -->
+  <path d="M 50 10 L 65 35 L 60 40 L 70 50 L 80 75 L 70 85 L 50 95 L 30 85 L 20 75 L 30 50 L 40 40 L 35 35 Z"
+        fill="url(#grad)"
+        stroke="#1e40af"
+        stroke-width="2"/>
+
+  <!-- Water line -->
+  <line x1="10" y1="35" x2="90" y2="35" stroke="#06b6d4" stroke-width="2" opacity="0.7"/>
+
+  <!-- Target/alignment symbol in center -->
+  <circle cx="50" cy="60" r="12" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="50" cy="60" r="6" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="50" cy="60" r="2" fill="#ffffff"/>
+</svg>

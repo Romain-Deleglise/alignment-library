@@ -13,6 +13,8 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
   }
 
   .dark {
@@ -25,28 +27,54 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
   }
 
-  /* Better typography */
+  /* Better typography with variable fonts */
+  * {
+    @apply border-border;
+  }
+
   body {
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv02" 1, "cv03" 1, "cv04" 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
   }
 }
 
-/* Code highlighting */
+/* Code highlighting with enhanced styles */
 @import 'highlight.js/styles/github-dark.css';
 
-/* Smooth scroll */
+/* Smooth scroll with offset for fixed header */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-/* Custom scrollbar */
+/* Custom modern scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -55,49 +83,260 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
-  border-radius: 5px;
+  border-radius: 6px;
+  border: 2px solid hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted));
 }
 
-/* Prose improvements for MDX content */
+::-webkit-scrollbar-corner {
+  background: hsl(var(--background));
+}
+
+/* Enhanced prose styles for MDX content */
 .prose {
-  @apply text-foreground;
+  @apply text-foreground max-w-none;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply scroll-mt-24 font-bold;
 }
 
 .prose h2 {
-  @apply scroll-mt-20;
+  @apply text-3xl mt-12 mb-6 pb-2 border-b border-border;
 }
 
 .prose h3 {
-  @apply scroll-mt-20;
+  @apply text-2xl mt-10 mb-4;
 }
 
 .prose h4 {
-  @apply scroll-mt-20;
+  @apply text-xl mt-8 mb-3;
+}
+
+.prose p {
+  @apply leading-7 my-4;
 }
 
 .prose a {
-  @apply no-underline border-b border-primary/30 hover:border-primary transition-colors;
+  @apply no-underline text-primary font-medium border-b-2 border-primary/30 hover:border-primary transition-colors;
+}
+
+.prose strong {
+  @apply text-foreground font-semibold;
 }
 
 .prose code {
-  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono before:content-none after:content-none;
+  @apply bg-muted px-2 py-0.5 rounded-md text-sm font-mono before:content-none after:content-none border border-border;
 }
 
 .prose pre {
-  @apply bg-muted border border-border;
+  @apply bg-muted border-2 border-border rounded-xl p-6 my-6 overflow-x-auto;
 }
 
 .prose pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 border-0 text-sm;
 }
 
 .prose blockquote {
-  @apply border-l-primary/50 bg-primary/5 py-1;
+  @apply border-l-4 border-primary/50 bg-primary/5 py-4 px-6 my-6 rounded-r-lg italic;
 }
+
+.prose ul,
+.prose ol {
+  @apply my-6 space-y-2;
+}
+
+.prose ul > li,
+.prose ol > li {
+  @apply leading-7;
+}
+
+.prose ul > li::marker {
+  @apply text-primary;
+}
+
+.prose ol > li::marker {
+  @apply text-primary font-bold;
+}
+
+.prose table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose th {
+  @apply bg-muted px-4 py-3 text-left font-semibold border border-border;
+}
+
+.prose td {
+  @apply px-4 py-3 border border-border;
+}
+
+.prose img {
+  @apply rounded-xl my-6 shadow-lg;
+}
+
+.prose hr {
+  @apply my-12 border-border;
+}
+
+/* Modern animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateY(-20px) translateX(5px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.animate-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.slide-in-from-top-2 {
+  animation: slide-in-from-top 0.3s ease-in-out;
+}
+
+.slide-in-from-bottom-4 {
+  animation: slide-in-from-bottom 0.4s ease-in-out;
+}
+
+.slide-in-from-bottom-8 {
+  animation: slide-in-from-bottom 0.8s ease-in-out;
+}
+
+.slide-in-from-left {
+  animation: slide-in-from-left 0.3s ease-in-out;
+}
+
+.slide-in-from-right {
+  animation: slide-in-from-right 0.3s ease-in-out;
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-muted animate-pulse rounded;
+}
+
+/* Glass morphism effect */
+.glass {
+  @apply bg-background/80 backdrop-blur-lg border border-border/50;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/60;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary ring-2 ring-primary/20;
+}
+
+/* Selection */
+::selection {
+  @apply bg-primary/20 text-foreground;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 
 .prose strong {
   @apply text-foreground font-semibold;
