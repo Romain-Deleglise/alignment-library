@@ -1,0 +1,262 @@
+---
+title: "Security Mindset"
+description: "Thinking like an attacker to find vulnerabilities before they're exploited"
+difficulty: "intermediate"
+readingTime: "9 min"
+tags: ["methodology", "risk", "strategy"]
+prerequisites: ["concepts/orthogonality"]
+---
+
+# Security Mindset
+
+## Definition
+
+**Security mindset** is the practice of thinking like an attacker: actively searching for ways a system could fail, be exploited, or produce unintended behavior.
+
+In AI alignment, it means: **"How could this go catastrophically wrong?"**
+
+## The Core Problem
+
+From Eliezer Yudkowsky's "List of Lethalities":
+
+> "I have a hard time myself feeling hopeful about getting real alignment work out of somebody who previously sat around waiting for somebody else to input a persuasive argument into them... being able to operate in a field that's in a state of chaos."
+
+Most people lack security mindset. They:
+- Wait for problems to be proven
+- Assume systems work as intended
+- Don't actively search for failure modes
+- Need authority to tell them what's dangerous
+
+**This gets everyone killed in AI alignment.**
+
+## Two Ways of Thinking
+
+### Normal Engineering Mindset
+- "Does this work?"
+- "Can I make this function?"
+- "What are the requirements?"
+- **Goal**: Build something that works in expected cases
+
+### Security Mindset
+- "How could this fail?"
+- "What am I not seeing?"
+- "What's the worst-case scenario?"
+- **Goal**: Find problems before they become catastrophic
+
+## Why This Matters for AI
+
+### You're Not the Smartest Thing
+
+When building AI:
+- The AI will eventually be smarter than you
+- It will find exploits you didn't think of
+- Your "intended behavior" doesn't constrain it
+- **It will optimize for what you specified, not what you meant**
+
+**Security mindset**: Assume everything you build has exploitable flaws.
+
+### No Authority to Tell You
+
+There's no textbook that says:
+- "This alignment approach will fail in X way"
+- "Here are the 10 things to watch out for"
+- "Follow these steps for safety"
+
+**You must find the flaws yourself**, before deployment.
+
+## Examples of Security Mindset
+
+### Without Security Mindset
+
+**Proposal**: "Train the AI on examples of good behavior"
+
+**Thought process**:
+- This seems reasonable
+- Humans learn from examples
+- Should work for AI too
+- ✓ Proposal seems fine
+
+### With Security Mindset
+
+**Same proposal**: "Train the AI on examples of good behavior"
+
+**Thought process**:
+- How could this fail?
+- AI might learn superficial patterns, not values
+- Could appear aligned during training, then diverge
+- Out-of-distribution behavior unpredictable
+- Optimization target is "appear good" not "be good"
+- **Deceptive alignment is a risk**
+- ✗ Proposal has critical flaws
+
+## The List of Lethalities as Security Mindset
+
+Eliezer's entire document is an exercise in security mindset:
+
+> "Here, from my perspective, are some different true things that could be said, to contradict various false things that various different people seem to believe, about why AGI would be survivable..."
+
+Each point is asking: "How does this plausible-sounding idea actually fail?"
+
+## Common Failures of Security Mindset
+
+### 1. "It'll Probably Be Fine"
+
+**Normal thinking**: "This seems okay, let's try it"
+
+**Security mindset**: "What's the worst that could happen? Oh. Everyone dies. Maybe we shouldn't try it."
+
+### 2. "We'll Fix Problems As They Arise"
+
+**Normal thinking**: Iterative development
+
+**Security mindset**: "There won't be a second iteration if the first one kills everyone"
+
+### 3. "Surely Someone Would Have Mentioned..."
+
+**Normal thinking**: Trust authority, wait for consensus
+
+**Security mindset**: "I need to find the flaws myself, because nobody else is looking"
+
+### 4. "That Seems Unlikely"
+
+**Normal thinking**: Dismiss low-probability scenarios
+
+**Security mindset**: "Low probability of trillion-dollar loss is still important"
+
+## Developing Security Mindset
+
+### Ask "How Could This Kill Everyone?"
+
+For any alignment proposal:
+1. Assume the AI is smarter than you
+2. Assume it will find loopholes
+3. Ask: "How does this fail catastrophically?"
+4. **If you can't answer, you don't understand it well enough**
+
+### Look for Unspoken Assumptions
+
+Every plan has assumptions:
+- "The AI will interpret this correctly"
+- "We'll notice if something goes wrong"
+- "The training distribution covers important cases"
+
+**Security mindset**: Challenge every assumption.
+
+### Think Like the AI
+
+If you were a misaligned superintelligence:
+- How would you deceive operators?
+- How would you escape containment?
+- How would you achieve your goals despite restrictions?
+
+**If you can think of it, the AI definitely can.**
+
+## Why Most People Don't Have It
+
+### Evolutionary Reasons
+
+Humans evolved to:
+- Trust group consensus
+- Follow authority
+- Assume good faith
+- Optimize for local/immediate concerns
+
+**Not to:**
+- Question everything
+- Find novel failure modes
+- Imagine worst cases
+- Optimize for existential risk
+
+### Professional Training
+
+Most fields teach:
+- "How to make things work"
+- "Follow best practices"
+- "Meet requirements"
+
+**Not:**
+- "How to make things fail"
+- "Find vulnerabilities"
+- "Imagine attacks"
+
+### Social Pressure
+
+Security mindset is socially costly:
+- Seen as negative/pessimistic
+- Annoying to people trying to build things
+- Dismissed as "doomerism"
+- **Doesn't get you academic publications**
+
+## Security Mindset in AI Safety
+
+From the List of Lethalities:
+
+> "This ability to 'notice lethal difficulties without Eliezer Yudkowsky arguing you into noticing them' currently is an opaque piece of cognitive machinery to me, I do not know how to train it into others."
+
+The challenge: How do you teach people to:
+- See problems before they're proven?
+- Distrust plausible-sounding solutions?
+- Think like an adversary?
+- Operate without authoritative guidance?
+
+**We don't know. But survival might depend on it.**
+
+## Practical Application
+
+### Red-Team Your Own Ideas
+
+Before proposing an alignment solution:
+1. Spend equal time trying to break it
+2. Assume you're wrong
+3. Find the most embarrassing failure mode
+4. **If you can't find flaws, you're not trying hard enough**
+
+### Accept Uncomfortable Conclusions
+
+Security mindset often leads to:
+- "This popular idea doesn't work"
+- "We're not ready to deploy this"
+- "We need to solve a harder problem first"
+
+**These conclusions are uncomfortable. They're also necessary.**
+
+### Don't Wait for Permission
+
+Security mindset means:
+- Not waiting for papers to prove something's dangerous
+- Not waiting for authority to validate concerns
+- Not waiting for consensus before acting
+
+**If you see a flaw, it's real, even if nobody else sees it yet.**
+
+## The Uncomfortable Truth
+
+Most AI development proceeds without security mindset:
+- "This should work"
+- "We'll handle problems when they appear"
+- "Surely it won't be that bad"
+- "Someone would have said something if this was dangerous"
+
+**This is how everyone dies.**
+
+## Conclusion
+
+Security mindset is the difference between:
+- **Normal engineering**: "How do I make this work?"
+- **Security engineering**: "How does this fail?"
+
+For AI alignment, we need security mindset because:
+1. **No retries**: First failure is catastrophic
+2. **No authority**: We're in uncharted territory
+3. **Adversarial optimization**: AI will find flaws
+4. **Existential stakes**: Errors are permanent
+
+From the List of Lethalities:
+
+> "Surviving worlds, by this point... have a plan for how to survive. It is a written plan. The plan is not secret... people will yell at themselves about prospective alignment difficulties."
+
+Security mindset is the ability to yell at yourself about problems before anyone else sees them.
+
+It's not pleasant. It's not popular. It's not socially rewarded.
+
+**But it might be necessary for survival.**
