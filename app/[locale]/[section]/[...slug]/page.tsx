@@ -79,50 +79,52 @@ export default async function ContentPage({ params }: Props) {
   const currentPath = '/' + slugPath.join('/')
 
   return (
-    <div className="max-w-7xl mx-auto flex gap-8">
-      <article className="flex-1 max-w-4xl">
-        <ReadingProgress />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex gap-8">
+        <article className="flex-1 max-w-4xl">
+          <ReadingProgress />
 
-        <Breadcrumbs path={slugPath} />
+          <Breadcrumbs path={slugPath} />
 
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">{data.metadata.title}</h1>
-          {data.metadata.description && (
-            <p className="text-xl text-muted-foreground">{data.metadata.description}</p>
-          )}
-          <div className="mt-4 flex gap-2 flex-wrap">
-            {data.metadata.difficulty && (
-              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                {data.metadata.difficulty}
-              </span>
+          <header className="mb-8">
+            <h1 className="text-4xl font-bold mb-2">{data.metadata.title}</h1>
+            {data.metadata.description && (
+              <p className="text-xl text-muted-foreground">{data.metadata.description}</p>
             )}
-          </div>
-        </header>
+            <div className="mt-4 flex gap-2 flex-wrap">
+              {data.metadata.difficulty && (
+                <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  {data.metadata.difficulty}
+                </span>
+              )}
+            </div>
+          </header>
 
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <MDXRemote
-            source={data.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [rehypeHighlight, rehypeSlug],
-              },
-            }}
-          />
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <MDXRemote
+              source={data.content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkGfm],
+                  rehypePlugins: [rehypeHighlight, rehypeSlug],
+                },
+              }}
+            />
+          </div>
+
+          <RelatedArticles currentPath={currentPath} />
+        </article>
+
+        {/* Table of Contents - Desktop only, smaller and collapsible */}
+        <div className="hidden lg:block w-56 flex-shrink-0">
+          <TableOfContents />
         </div>
 
-        <RelatedArticles currentPath={currentPath} />
-      </article>
-
-      {/* Table of Contents - Desktop only */}
-      <div className="hidden xl:block w-64 flex-shrink-0">
-        <TableOfContents />
-      </div>
-
-      {/* Table of Contents - Mobile as floating button */}
-      <div className="xl:hidden">
-        <TableOfContents />
+        {/* Table of Contents - Mobile as floating button */}
+        <div className="lg:hidden">
+          <TableOfContents />
+        </div>
       </div>
     </div>
   )

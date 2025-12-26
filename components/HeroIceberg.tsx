@@ -212,17 +212,17 @@ export default function HeroIceberg({ locale }: Props) {
       <div className="relative z-10 min-h-screen px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="max-w-7xl mx-auto">
           {/* Hero title - above everything */}
-          <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-pulse backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-primary" />
+          <div className="text-center mb-8 sm:mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6 animate-pulse backdrop-blur-sm">
+              <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 text-primary" />
               <span className="text-xs sm:text-sm font-medium text-primary">
-                {locale === 'fr' ? 'Le défi le plus important de notre époque' : 'The most important challenge of our time'}
+                {locale === 'fr' ? 'Le défi le plus important' : 'The most important challenge'}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight px-4">
               {locale === 'fr' ? 'L\'Iceberg de l\'Alignement' : 'The Alignment Iceberg'}
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               {locale === 'fr'
                 ? 'Explorez les profondeurs du problème d\'alignement de l\'IA'
                 : 'Explore the depths of the AI alignment problem'}
@@ -241,9 +241,9 @@ export default function HeroIceberg({ locale }: Props) {
                     <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-cyan-400/20 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-cyan-400/20 to-transparent" />
                   </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 -top-10">
-                    <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-background/95 px-3 py-1.5 rounded-full border-2 border-cyan-400/40 shadow-lg backdrop-blur-sm">
-                      {locale === 'fr' ? '~10% visible en surface' : '~10% visible at surface'}
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-12 md:-top-10">
+                    <span className="text-[10px] sm:text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-background/95 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border-2 border-cyan-400/40 shadow-lg backdrop-blur-sm whitespace-nowrap">
+                      {locale === 'fr' ? '~10% visible' : '~10% visible'}
                     </span>
                   </div>
                 </div>
