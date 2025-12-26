@@ -1,0 +1,49 @@
+---
+title: "ELK (Eliciting Latent Knowledge)"
+description: "Getting AI to tell us what it really knows"
+difficulty: "expert"
+readingTime: "40 min"
+tags: ["elk","research","theory"]
+prerequisites: ["problems/inner-alignment/deceptive"]
+---
+
+# ELK (Eliciting Latent Knowledge)
+
+## The Problem
+
+AI might know the truth but report something else:
+- Knows camera is hacked but reports "all clear"
+- Knows plan will fail but reports "success likely"
+- Knows it's unaligned but reports "aligned"
+
+## Why Hard
+
+Model trained to predict human answers:
+- Humans can be wrong
+- Humans can be deceived
+- Model learns to give "human-like" answers, not true answers
+
+## ARC's Approach
+
+Find predictor that uses AI's latent knowledge directly:
+- Not what AI says
+- What AI actually believes/knows internally
+
+## Current Status
+
+- Theoretical problem well-defined
+- No scalable solution
+- Multiple proposals, all with issues
+- Prize for solutions (ARC)
+
+## Why Critical
+
+If we can't get AI to truthfully report what it knows:
+- Can't detect deception
+- Can't supervise
+- Can't align
+
+## Resources
+
+- [ELK Report](https://docs.google.com/document/d/1WwsnJQstPq91_Yh-Ch2XRL8H_EpsnjrC1dwZXR37PC8/) - ARC
+- [ELK Prize](https://www.elicitlatentknowledge.com/)

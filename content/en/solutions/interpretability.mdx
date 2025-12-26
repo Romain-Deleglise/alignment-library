@@ -1,0 +1,46 @@
+---
+title: "Mechanistic Interpretability"
+description: "Understanding what AI systems are actually doing internally"
+difficulty: "advanced"
+readingTime: "35 min"
+tags: ["interpretability","mechanistic","solutions"]
+prerequisites: ["problems/inner-alignment/mesa-optimization"]
+---
+
+# Mechanistic Interpretability
+
+## Goal
+
+Understand what neural networks are actually computing, circuit by circuit.
+
+## Approaches
+
+1. **Feature visualization**: What activates neurons
+2. **Circuits analysis**: How neurons connect and compute
+3. **Probing**: What information is encoded where
+4. **Causal interventions**: What happens when we modify activations
+
+## Progress
+
+- Some success on small transformers
+- Understanding attention heads, MLPs
+- Finding interpretable features
+
+## Critical Limitations
+
+1. **Doesn't scale**: Hard to interpret billion-parameter models
+2. **Polysemantic neurons**: One neuron = multiple concepts
+3. **Distributed representations**: Concepts spread across many neurons
+4. **Superposition**: More features than neurons
+
+## Why Important for Alignment
+
+- Could detect deceptive alignment
+- Could verify what model is optimizing for
+- Could catch mesa-optimizers
+- But: might not scale to superintelligence
+
+## Resources
+
+- [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html)
+- [Towards Monosemanticity](https://transformer-circuits.pub/2023/monosemantic-features/index.html)
