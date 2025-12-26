@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import Navigation from '@/components/Navigation'
+import TopNavigation from '@/components/TopNavigation'
 import Footer from '@/components/Footer'
 import { locales } from '@/i18n'
 
@@ -42,15 +42,13 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        <div className="flex min-h-screen font-sans antialiased">
-          {/* Sidebar Navigation */}
-          <Navigation />
+        <div className="min-h-screen font-sans antialiased">
+          {/* Top Navigation */}
+          <TopNavigation />
 
           {/* Main Content */}
-          <main className="flex-1 overflow-y-auto">
-            <div className="container mx-auto px-4 py-8">
-              {children}
-            </div>
+          <main className="w-full">
+            {children}
             <Footer />
           </main>
         </div>
