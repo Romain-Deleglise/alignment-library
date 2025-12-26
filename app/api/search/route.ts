@@ -4,12 +4,13 @@ import { getAllContent } from '@/lib/content'
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const query = searchParams.get('q')?.toLowerCase() || ''
+  const locale = searchParams.get('locale') || 'en'
 
   if (!query || query.length < 2) {
     return NextResponse.json({ results: [] })
   }
 
-  const allContent = getAllContent()
+  const allContent = getAllContent(locale)
 
   const results = allContent
     .filter(content =>
