@@ -3,6 +3,7 @@ import { Book, Target, AlertTriangle, Users, Lightbulb, ExternalLink } from 'luc
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import LearningPathCard from '@/components/LearningPathCard';
+import AlignmentIceberg from '@/components/AlignmentIceberg';
 
 type Props = {
   params: { locale: string };
@@ -119,6 +120,21 @@ export default async function HomePage({ params }: Props) {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Alignment Iceberg Visualization */}
+      <section className="mb-16">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-3">
+            {locale === 'fr' ? 'L\'Iceberg de l\'Alignement' : 'The Alignment Iceberg'}
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            {locale === 'fr'
+              ? 'Explorez les différentes couches de complexité du problème d\'alignement'
+              : 'Explore the different layers of complexity in the alignment problem'}
+          </p>
+        </div>
+        <AlignmentIceberg locale={locale} />
       </section>
 
       {/* Learning Path Section */}
