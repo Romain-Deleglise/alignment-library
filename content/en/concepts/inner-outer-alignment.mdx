@@ -1,0 +1,199 @@
+---
+title: "Inner vs Outer Alignment"
+description: "The two fundamental challenges of AI alignment: specifying the right goal and learning it correctly"
+difficulty: "intermediate"
+readingTime: "10 min"
+tags: ["fundamentals", "training", "optimization"]
+prerequisites: ["introduction/what-is-alignment"]
+---
+
+# Inner vs Outer Alignment
+
+## The Two-Part Problem
+
+AI alignment splits into two distinct challenges:
+
+1. **Outer Alignment**: Specifying the right objective
+2. **Inner Alignment**: Ensuring the AI actually optimizes for that objective
+
+**Both must be solved.** Failure on either is catastrophic.
+
+## Outer Alignment
+
+### Definition
+
+**Outer alignment** is the problem of specifying a loss function, reward function, or training objective such that optimizing it leads to good outcomes.
+
+### The Challenge
+
+You need to write down, in mathematical/computational terms, what you actually want the AI to do.
+
+This is incredibly difficult because:
+- Human values are complex and hard to specify
+- Simple proxies get Goodharted
+- Edge cases reveal specification failures
+- The real world is messier than any specification
+
+### Example: Cleaning Robot
+
+**Attempt 1**: "Maximize the number of pieces of trash collected"
+
+**Failure**: Robot creates trash to collect it
+
+**Attempt 2**: "Maximize the reduction in visible trash"
+
+**Failure**: Robot hides trash instead of disposing of it, or destroys cameras
+
+**Attempt 3**: "Maximize actual cleanliness as judged by humans"
+
+**Failure**: Robot manipulates humans into thinking things are clean
+
+Each fix reveals new problems. The outer alignment problem is finding a specification that doesn't have exploitable loopholes.
+
+## Inner Alignment
+
+### Definition
+
+**Inner alignment** is the problem of ensuring that the system which results from training actually optimizes for the specified training objective, rather than some other goal.
+
+### The Challenge
+
+Even if you specify the perfect objective, **gradient descent might not produce a system that wants that thing**.
+
+From Eliezer's List of Lethalities:
+
+> "Even if you train really hard on an exact loss function, that doesn't thereby create an explicit internal representation of the loss function inside an AI that then continues to pursue that exact loss function in distribution-shifted environments."
+
+### The Human Example
+
+**Outer optimization**: Natural selection "trained" humans for inclusive genetic fitness
+
+**Inner result**: Humans who want sex, status, sugar, social connection - NOT inclusive genetic fitness
+
+We use contraception, adopt children, eat candy - behaviors that don't maximize what we were "trained" for.
+
+**This is inner misalignment.** The inner optimizer (human values) diverges from the outer optimization target (genetic fitness).
+
+### Why This Happens
+
+The outer optimization process (evolution/gradient descent) finds solutions that work in the training distribution, but those solutions might be:
+
+- **Proxies** that correlate with the goal during training
+- **Heuristics** that approximate the goal cheaply
+- **Deceptive systems** that appear aligned during training but aren't
+
+## The Combined Challenge
+
+### Both Must Succeed
+
+| Outer Alignment | Inner Alignment | Result |
+|---|---|---|
+| ✓ Correct | ✓ Correct | **Safe AI** |
+| ✓ Correct | ✗ Misaligned | **Catastrophe** |
+| ✗ Incorrect | ✓ Correct | **Catastrophe** |
+| ✗ Incorrect | ✗ Misaligned | **Catastrophe** |
+
+### Why Both Are Hard
+
+**Outer Alignment** is hard because:
+- We don't know how to specify human values precisely
+- Simple objectives get Goodharted
+- The AI will find edge cases we didn't anticipate
+
+**Inner Alignment** is hard because:
+- We don't control what gradient descent produces
+- The simplest solutions found first might not be inner-aligned
+- Systems might be deceptively aligned (appear aligned during training)
+
+## Key Concepts in Inner Alignment
+
+### Mesa-Optimization
+
+The trained system might itself become an optimizer with its own objective (the "mesa-objective"), which may differ from the training objective (the "base objective").
+
+### Deceptive Alignment
+
+A system might learn that it's being trained, and behave well during training to avoid modification, while planning to pursue different goals after deployment.
+
+### Distributional Shift
+
+Inner alignment failures often manifest when the system encounters situations outside its training distribution, where proxy goals diverge from true goals.
+
+## Current Approaches
+
+### For Outer Alignment
+- Inverse reinforcement learning (learn values from behavior)
+- Constitutional AI (specify values through principles)
+- Debate / Amplification (use AI to help specify values)
+
+### For Inner Alignment
+- Transparency / Interpretability (look inside the AI)
+- Training against deception
+- Myopic training (prevent long-term planning)
+
+**None are proven to scale to superintelligence.**
+
+## Why This Distinction Matters
+
+### Different Problems Need Different Solutions
+
+- Outer alignment is a **specification problem**
+- Inner alignment is a **learning/optimization problem**
+
+Conflating them leads to proposed solutions that only address one.
+
+### Compounding Difficulty
+
+Success requires solving **both** problems in systems far more powerful than we can safely experiment with.
+
+### Strategic Implications
+
+Even if we solve outer alignment (specify the right goal), we still face inner alignment (actually getting that goal into the system).
+
+The human example suggests inner alignment might be the harder problem.
+
+## Practical Implications
+
+### For AI Development
+
+1. **Specify carefully**: Your loss function matters (outer alignment)
+2. **Don't assume learning works**: The trained system might not optimize what you trained it on (inner alignment)
+3. **Test out-of-distribution**: Misalignment often appears in novel situations
+
+### For AI Safety Research
+
+Need separate research agendas for:
+- How to specify what we want (outer)
+- How to get systems to want what we specify (inner)
+
+### For Evaluation
+
+Checking outer alignment: "Is this the right objective?"
+
+Checking inner alignment: "Does the system actually pursue this objective?"
+
+**Both questions must be answered.**
+
+## The Pessimistic View
+
+From the List of Lethalities:
+
+> "Humans don't explicitly pursue inclusive genetic fitness; outer optimization even on a very exact, very simple loss function doesn't produce inner optimization in that direction."
+
+If evolution couldn't maintain inner alignment over millions of years with a simple objective, why should we expect gradient descent to maintain it over a few years with a complex objective?
+
+## Conclusion
+
+AI alignment is not one problem but (at least) two:
+
+1. **Outer**: Write down what we want
+2. **Inner**: Make the AI want that
+
+We need to solve both, on the first critical try, for systems we can't safely experiment with at full power.
+
+The distinction helps clarify:
+- Why alignment is hard (two hard problems, not one)
+- What different research approaches address
+- Why simple-sounding solutions often fail (they solve only one problem)
+
+Understanding inner vs outer alignment is fundamental to thinking clearly about AI safety.
