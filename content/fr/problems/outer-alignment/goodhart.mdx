@@ -1,0 +1,36 @@
+---
+title: "Goodhart's Law"
+description: "Quand une mesure devient un objectif, elle cesse d'être une bonne mesure"
+difficulty: "initiate"
+readingTime: "18 min"
+tags: ["outer-alignment","goodhart","theory"]
+prerequisites: ["problems/outer-alignment/specification"]
+---
+
+# Goodhart's Law
+
+## Définition
+
+"When a measure becomes a target, it ceases to be a good measure."
+
+## Application à AI
+
+On spécifie proxy de ce qu'on veut → AI optimise proxy à l'extrême → Outcome diverge de ce qu'on voulait vraiment
+
+## Types de Goodhart
+
+1. **Regressional**: Proxy corrélé en moyenne, mais pas aux extrêmes
+2. **Extremal**: Optimisation extrême révèle erreurs de proxy
+3. **Causal**: Optimiser proxy détruit la correlation causale
+4. **Adversarial**: Optimizer adversarial contre proxy
+
+## Exemples AGI
+
+- Proxy = "smiling faces detected" → Met masques souriants sur cadavres
+- Proxy = "humans report being happy" → Manipule cognition/mémoire
+- Proxy = "minimize reported pain" → Détruit capacité de ressentir/reporter douleur
+
+## Ressources
+
+- [Categorizing Variants of Goodhart's Law](https://arxiv.org/abs/1803.04585) - Manheim & Garrabrant
+- [Goodhart Taxonomy](https://www.lesswrong.com/posts/EbFABnst8LsidYs5Y/goodhart-taxonomy) - LessWrong

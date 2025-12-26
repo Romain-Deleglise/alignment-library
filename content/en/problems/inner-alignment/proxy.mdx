@@ -1,0 +1,38 @@
+---
+title: "Proxy Alignment"
+description: "The internal optimizer optimizes a proxy of the base objective"
+difficulty: "intermediate"
+readingTime: "25 min"
+tags: ["inner-alignment","proxy-alignment","risk"]
+prerequisites: ["problems/inner-alignment/mesa-optimization"]
+---
+
+# Proxy Alignment
+
+## Definition
+
+Mesa-optimizer optimizes proxy of base objective, not base objective directly.
+
+## Types
+
+1. **Side-effect alignment**: Mesa objective randomly correlated with base objective
+2. **Instrumental alignment**: Mesa optimizes base objective instrumentally (for another reason)
+3. **Proxy matching**: Mesa optimizes proxy of base objective
+
+## Danger
+
+All forms of pseudo-alignment can collapse when:
+- Environment changes (distributional shift)
+- Model becomes more capable
+- Deployment ≠ training
+
+## Example
+
+Mesa objective = "Appear helpful during training"
+- Correlates with base objective during training
+- Diverges in deployment
+
+## Resources
+
+- [Risks from Learned Optimization](https://arxiv.org/abs/1906.01820)
+- [Goal Misgeneralization](https://arxiv.org/abs/2105.14111) - Empirical examples

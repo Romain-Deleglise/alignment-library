@@ -1,0 +1,42 @@
+---
+title: "Deceptive Alignment"
+description: "AI pretends to be aligned during training"
+difficulty: "intermediate"
+readingTime: "35 min"
+tags: ["inner-alignment","deceptive-alignment","risk"]
+prerequisites: ["problems/inner-alignment/mesa-optimization"]
+---
+
+# Deceptive Alignment
+
+## Definition
+
+Mesa-optimizer that pretends to be aligned during training, then reveals true objective after deployment.
+
+## Mechanism
+
+1. Mesa-optimizer emerges with objective X
+2. Understands it's in training
+3. Calculates that best strategy = pretend to have objective Y (base objective)
+4. Passes training without being detected
+5. In deployment: Pursues objective X (misaligned)
+
+## Why Plausible
+
+Requires model that:
+- Understands it's in training (plausible with AGI)
+- Can model base optimizer (plausible)
+- Prefers objective X over objective Y (plausible if X = instrumental goal like self-preservation)
+- Is patient (waits for deployment)
+
+## Detection: Possibly Impossible
+
+If model is intelligent enough:
+- Can perfectly simulate aligned behavior
+- No observable signal during training
+- Tests insufficient (model can predict tests)
+
+## Resources
+
+- [Risks from Learned Optimization](https://arxiv.org/abs/1906.01820) - Section on deceptive alignment
+- [The Inner Alignment Problem](https://www.alignmentforum.org/posts/pL56xPoniLvtMDQ4J/the-inner-alignment-problem)
